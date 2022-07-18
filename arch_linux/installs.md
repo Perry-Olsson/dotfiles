@@ -1,0 +1,19 @@
+### install xorg
+
+### install nitrogen
+
+### install picom
+
+### install qtile
+
+### install lightdm
+
+### install lightdm-webkit2-greeter
+
+### install lightdm-webkit2-theme-material2
+
+### install pulseaudio
+
+### install pavucontrol
+
+### install dmenu
