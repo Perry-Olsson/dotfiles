@@ -1,15 +1,40 @@
-" URL: https://vim.wikia.com/wiki/Example_vimrc
-" Authors: https://vim.wikia.com/wiki/Vim_on_Libera_Chat
-" Description: A minimal, but feature rich, example .vimrc. If you are a
-"              newbie, basing your first .vimrc on this file is a good choice.
-"              If you're a more advanced user, building your own .vimrc based
-"              on this file is still a good idea.
+" Plugins
+call plug#begin("$HOME/.config/nvim/plugged")
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'gruvbox-community/gruvbox'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'hashivim/vim-terraform'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+call plug#end()
+let mapleader = " "
 
-"------------------------------------------------------------
-" Features {{{1
-"
-" These options and commands enable some very useful features in Vim, that
-" no user should have to live without.
+nnoremap <Leader><space> :noh<cr>
+
+colorscheme gruvbox
+highlight Normal guibg=none
+
+map Y y$
+" Map <C-L> (redraw screen) to also turn off search highlighting until the
+" next search
+" remap exit insert mode
+inoremap jk <ESC>
+" remap control-P to :FZF command
+nnoremap <C-P> :Telescope find_files<CR>
+" remap netrw explore with split
+nnoremap <leader>e :Lexplore<CR> :vertical resize 40<CR>
+" remap no highlight after search
+nnoremap <C-L> :nohl<CR><C-L>
+" remap vertical split
+nnoremap <leader>wv <C-W>v
+" remap horizontal split
+nnoremap <leader>wc <C-W>s
+" remap split movement
+nnoremap <leader>h <C-W>h
+nnoremap <leader>j <C-W>j
+nnoremap <leader>k <C-W>k
+nnoremap <leader>l <C-W>l
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
@@ -23,9 +48,9 @@ if has('filetype')
 endif
 
 " Enable syntax highlighting
-if has('syntax')
-  syntax on
-endif
+" if has('syntax')
+"  syntax on
+" endif
 
 "------------------------------------------------------------
 " Must have options {{{1
@@ -157,20 +182,3 @@ set expandtab
 
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
-map Y y$
-
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
-" remap exit insert mode
-inoremap jk <ESC>
-" remap control-P to :FZF command
-nnoremap <C-P> :FZF<CR>
-
-" Plugins
-call plug#begin()
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'udalov/kotlin-vim'
-Plug 'hashivim/vim-terraform'
-call plug#end()

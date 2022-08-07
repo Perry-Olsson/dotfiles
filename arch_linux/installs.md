@@ -17,3 +17,5 @@
 ### install pavucontrol
 
 ### install dmenu
+
+### install neovim
