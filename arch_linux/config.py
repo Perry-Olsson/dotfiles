@@ -66,14 +66,20 @@ keys = [
 
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
-    Key("M-C-h", lazy.layout.grow_left(),
+    # bsp keys
+    Key("M-A-h", lazy.layout.grow_left(),
         desc="Grow window to the left"),
-    Key("M-C-l", lazy.layout.grow_right(),
+    Key("M-A-l", lazy.layout.grow_right(),
         desc="Grow window to the right"),
-    Key("M-C-j", lazy.layout.grow_down(),
+    Key("M-A-j", lazy.layout.grow_down(),
         desc="Grow window down"),
-    Key("M-C-k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key("M-A-k", lazy.layout.grow_up(), desc="Grow window up"),
     Key("M-n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    # monad wide
+    Key("M-A-i", lazy.layout.grow(), desc="Grow window"),
+    Key("M-A-m", lazy.layout.shrink(), desc="Shrink window"),
+    Key("M-A-n", lazy.layout.normalize(), desc="normalize window sizes"),
+    Key("M-A-o", lazy.layout.minimize(), desc="minimize window sizes"),
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -110,7 +116,7 @@ keys = [
 
 groups = [
     Group("", layout="max",        matches=[Match(wm_class=["navigator", "firefox", "vivaldi-stable", "chromium", "brave"])]),
-    Group("", layout="monadtall",  matches=[Match(wm_class=["emacs", "geany", "subl"])]),
+    Group("", layout="bsp",  matches=[Match(wm_class=["emacs", "geany", "subl", "vim", "nvim"])]),
     Group("", layout="monadtall",  matches=[Match(wm_class=["inkscape", "nomacs", "ristretto", "nitrogen"])]),
     Group("", layout="monadtall",  matches=[Match(wm_class=["qpdfview", "thunar", "nemo", "caja", "pcmanfm"])]),
     Group("", layout="max",        matches=[Match(wm_class=["telegramDesktop"])]),

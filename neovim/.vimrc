@@ -1,16 +1,18 @@
 " Plugins
 call plug#begin("$HOME/.config/nvim/plugged")
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'hashivim/vim-terraform'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'neovim/nvim-lspconfig'
 call plug#end()
 let mapleader = " "
 
-nnoremap <Leader><space> :noh<cr>
+" set keybind for opening vimrc
+nnoremap <leader>vi :edit ~/.vimrc<CR>
+
+nnoremap <Leader><space> :noh<CR>
 
 colorscheme gruvbox
 highlight Normal guibg=none
@@ -20,10 +22,14 @@ map Y y$
 " next search
 " remap exit insert mode
 inoremap jk <ESC>
-" remap control-P to :FZF command
-nnoremap <C-P> :Telescope find_files<CR>
+" setup telescope commands
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fd <cmd>Telescope find_files hidden=true<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " remap netrw explore with split
-nnoremap <leader>e :Lexplore<CR> :vertical resize 40<CR>
+nmap <leader>e <leader>t :Lexplore<CR> :vertical resize 35<CR>
 " remap no highlight after search
 nnoremap <C-L> :nohl<CR><C-L>
 " remap vertical split
@@ -31,10 +37,29 @@ nnoremap <leader>wv <C-W>v
 " remap horizontal split
 nnoremap <leader>wc <C-W>s
 " remap split movement
-nnoremap <leader>h <C-W>h
-nnoremap <leader>j <C-W>j
-nnoremap <leader>k <C-W>k
-nnoremap <leader>l <C-W>l
+nnoremap <A-h> <C-W>h
+nnoremap <A-j> <C-W>j
+nnoremap <A-k> <C-W>k
+nnoremap <A-l> <C-W>l
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-l> <C-\><C-N><C-w>l
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+
+" remap copy to clipboard
+nnoremap <leader>yy "+yy
+vnoremap <leader>y "+y
+
+" ***********NEOVIM TERMINAL EMULATOR***********
+" open terminal
+nnoremap <leader>t <C-W>s<C-W>j:terminal<CR> :resize 10<CR>
+" remap exit terminal emulator
+tnoremap <Esc> <C-\><C-n>
+
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
