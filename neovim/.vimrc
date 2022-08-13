@@ -6,11 +6,18 @@ Plug 'hashivim/vim-terraform'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 call plug#end()
 let mapleader = " "
 
+" ***********QUICK ACCESS FILES***********
 " set keybind for opening vimrc
 nnoremap <leader>vi :edit ~/.vimrc<CR>
+nnoremap <leader>ls :edit ~/.config/nvim/lua/config.lua<CR>
 
 nnoremap <Leader><space> :noh<CR>
 
@@ -36,6 +43,15 @@ nnoremap <C-L> :nohl<CR><C-L>
 nnoremap <leader>wv <C-W>v
 " remap horizontal split
 nnoremap <leader>wc <C-W>s
+" set working directory
+nnoremap <leader>wd :lcd %:p:h<CR>
+
+" remap resize
+nnoremap = :res +5<CR>
+nnoremap - :res -5<CR>
+nnoremap <A-=> :vertical res +15<CR>
+nnoremap <A--> :vertical res -15<CR>
+
 " remap split movement
 nnoremap <A-h> <C-W>h
 nnoremap <A-j> <C-W>j
@@ -59,6 +75,9 @@ vnoremap <leader>y "+y
 nnoremap <leader>t <C-W>s<C-W>j:terminal<CR> :resize 10<CR>
 " remap exit terminal emulator
 tnoremap <Esc> <C-\><C-n>
+
+" make browsed directory current directory
+let g:netrw_keepdir=0
 
 
 " Set 'nocompatible' to ward off unexpected things that your distro might

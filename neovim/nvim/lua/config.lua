@@ -40,6 +40,18 @@ require("lspconfig")['rust_analyzer'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
+require("lspconfig")['tsserver'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags
+}
+require("lspconfig")['terraformls'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
+vim.api.nvim_create_autocmd({"BufWritePre"}, {
+  pattern = {"*.tf", "*.tfvars"},
+  callback = vim.lsp.buf.formatting_sync,
+})
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
