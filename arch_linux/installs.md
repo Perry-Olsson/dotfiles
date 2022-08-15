@@ -19,3 +19,11 @@
 ### install dmenu
 
 ### install neovim
+
+### docker
+
+### node
+
+### yay
+
+### kitty

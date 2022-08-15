@@ -12,6 +12,8 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'L3MON4D3/LuaSnip'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 let mapleader = " "
 
@@ -23,6 +25,7 @@ nnoremap <leader>ls :edit ~/.config/nvim/lua/config.lua<CR>
 nnoremap <Leader><space> :noh<CR>
 
 colorscheme gruvbox
+"highlight Normal ctermbg=gray
 highlight Normal guibg=none
 
 map Y y$

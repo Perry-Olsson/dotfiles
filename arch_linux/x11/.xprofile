@@ -1,0 +1,3 @@
+nitrogen --restore
+(sleep 5s && xset r rate 200 65) &
+picom -f &
