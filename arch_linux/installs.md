@@ -27,3 +27,7 @@
 ### yay
 
 ### kitty
+ 
+### cmake
+
+### ccls
