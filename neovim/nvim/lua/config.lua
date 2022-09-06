@@ -4,6 +4,17 @@
 *************************VIM CONFIG***************************
 **************************************************************
 --]]
+vim.g.netrw_liststyle = 3 -- Tree-style view
+--[[ 
+**************************************************************
+*************************NVIM TREE CONFIG***************************
+**************************************************************
+--]]
+require("nvim-tree").setup({
+     view = {
+         preserve_window_proportions = true
+     }
+})
 --[[ 
 **************************************************************
 *************************LSP CONFIG***************************
@@ -71,15 +82,20 @@ lsp_config.terraformls.setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
+vim.api.nvim_create_autocmd({"BufWritePre"}, {
+  pattern = {"*.tf", "*.tfvars"},
+  callback = vim.lsp.buf.formatting_sync,
+})
 lsp_config.pyright.setup{
     capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flags
 }
-vim.api.nvim_create_autocmd({"BufWritePre"}, {
-  pattern = {"*.tf", "*.tfvars"},
-  callback = vim.lsp.buf.formatting_sync,
-})
+lsp_config.ccls.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = lsp_flags
+}
 
 --[[ 
 **************************************************************

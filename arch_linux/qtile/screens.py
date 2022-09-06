@@ -217,7 +217,7 @@ def init_screens():
                             format='%a %d, (%B) %H:%M:%S '
                         ),
                     ],
-                    35,
+                    28,
                     opacity=1,
                     background=theme["dark_gray_blue"],
                 ),

@@ -1,7 +1,9 @@
 " Plugins
 call plug#begin("$HOME/.config/nvim/plugged")
-Plug 'gruvbox-community/gruvbox'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'hashivim/vim-terraform'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
@@ -21,12 +23,14 @@ let mapleader = " "
 " set keybind for opening vimrc
 nnoremap <leader>vi :edit ~/.vimrc<CR>
 nnoremap <leader>ls :edit ~/.config/nvim/lua/config.lua<CR>
+"nvim tree help
+nnoremap <leader>nt :help nvim-tree-setup<CR>
 
 nnoremap <Leader><space> :noh<CR>
 
-colorscheme gruvbox
+colorscheme tokyonight
 "highlight Normal ctermbg=gray
-highlight Normal guibg=none
+"highlight Normal guibg=none
 
 map Y y$
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
@@ -40,7 +44,7 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " remap netrw explore with split
-nmap <leader>e <leader>t :Lexplore<CR> :vertical resize 35<CR>
+nmap <leader>e  <leader>t <cmd>NvimTreeToggle<CR> <cmd>vertical resize 35<CR>
 " remap no highlight after search
 nnoremap <C-L> :nohl<CR><C-L>
 " remap vertical split
