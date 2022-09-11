@@ -1,10 +1,13 @@
 " Plugins
 call plug#begin("$HOME/.config/nvim/plugged")
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'EdenEast/nightfox.nvim'
+Plug 'b3nj5m1n/kommentary'
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'hashivim/vim-terraform'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'neovim/nvim-lspconfig'
@@ -28,9 +31,9 @@ nnoremap <leader>nt :help nvim-tree-setup<CR>
 
 nnoremap <Leader><space> :noh<CR>
 
-colorscheme tokyonight
 "highlight Normal ctermbg=gray
 "highlight Normal guibg=none
+colorscheme tokyonight 
 
 map Y y$
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
