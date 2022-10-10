@@ -1,5 +1,7 @@
 " Plugins
 call plug#begin("$HOME/.config/nvim/plugged")
+Plug 'mfussenegger/nvim-jdtls'
+Plug 'williamboman/mason.nvim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'EdenEast/nightfox.nvim'
 Plug 'b3nj5m1n/kommentary'

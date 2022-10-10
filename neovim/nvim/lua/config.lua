@@ -1,4 +1,5 @@
 ---@diagnostic disable: undefined-global
+require("mason").setup()
 --[[ 
 **************************************************************
 *************************VIM CONFIG***************************
@@ -18,6 +19,7 @@ vim.keymap.set("n", "<leader>-", dap.step_out)
 vim.keymap.set("n", "<leader>=", dap.terminate)
 vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
 vim.keymap.set("n", "<leader>dr", dap.repl.open)
+-- **********************C++/C/RUST**************************
 dap.adapters.lldb = {
   type = 'executable',
   command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
@@ -29,7 +31,7 @@ dap.configurations.cpp = {
     type = 'lldb',
     request = 'launch',
     program = function()
-      return string.format('%s/target/debug/hello_world', vim.fn.getcwd())
+      return string.format('%s/build/TESTING', vim.fn.getcwd())
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
@@ -50,9 +52,41 @@ dap.configurations.cpp = {
   },
 }
 dap.configurations.rust = dap.configurations.cpp
+dap.configurations.c = dap.configurations.cpp
+--[[ 
+*************************PYTHON*******************************
+--]]
+local venv = os.getenv("VIRTUAL_ENV")
+dap.adapters.python = {
+  type = 'executable';
+  command = string.format("%s/bin/python",venv);
+  args = { '-m', 'debugpy.adapter' };
+}
+dap.configurations.python = {
+  {
+    -- The first three options are required by nvim-dap
+    type = 'python'; -- the type here established the link to the adapter definition: `dap.adapters.python`
+    request = 'launch';
+    name = "Launch file";
+
+    -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
+
+    program = "${file}"; -- This configuration will launch the current file if used.
+    pythonPath = function()
+      -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
+      -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
+      -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
+      if vim.fn.executable(string.format('%s/bin/python', venv)) == 1 then
+        return string.format('%s/bin/python', venv)
+      else
+        return '/usr/bin/python'
+      end
+    end;
+  },
+}
 --[[ 
 **************************************************************
-***********************DAP UI CONFIG***************************
+***********************DAP UI CONFIG**************************
 **************************************************************
 --]]
 local dapui = require("dapui")
@@ -204,7 +238,14 @@ lsp_config.ccls.setup {
     on_attach = on_attach,
     flags = lsp_flags
 }
-
+lsp_config.jdtls.setup {
+    capabilities = capabilities,
+    on_attach = function (client, buf)
+        on_attach(client, buf)
+        require('jdtls').setup_dap({ hotcodereplace = 'auto' })
+    end,
+    flags = lsp_flags,
+}
 --[[ 
 **************************************************************
 ********************NVIM CMP CONFIGURATION********************
@@ -218,8 +259,8 @@ snippet = {
   end,
 },
 window = {
-  -- completion = cmp.config.window.bordered(),
-  -- documentation = cmp.config.window.bordered(),
+  completion = cmp.config.window.bordered(),
+  documentation = cmp.config.window.bordered(),
 },
 mapping = cmp.mapping.preset.insert({
   ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -282,7 +323,7 @@ require'nvim-treesitter.configs'.setup {
 --]]
 require("telescope").setup({
     defaults = {
-        file_ignore_patterns = { "%.git/" }
+        file_ignore_patterns = { "%.git/", "%build/", "%.class" }
     }
 })
 --[[ 
