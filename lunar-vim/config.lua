@@ -1,3 +1,8 @@
+lvim.plugins = {
+  { "rcarriga/nvim-dap-ui" },
+  { "mfussenegger/nvim-dap-python" },
+  { "hashivim/vim-terraform" }
+}
 --[[
 lvim is the global options object
 
@@ -21,8 +26,8 @@ lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- misc mappings
 vim.cmd([[
-  let mapleader = " "
-  nnoremap <leader>vi :edit ~/.vimrc<CR>
+  map Y y$
+  inoremap jk <ESC>
 ]]
 )
 -- buffer movement maps
@@ -98,7 +103,6 @@ vim.cmd("nnoremap <leader>wd :lcd %:p:h<CR>")
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
@@ -356,10 +360,6 @@ require("lvim.lsp.manager").setup("pyright", opts)
 --       cmd = "TroubleToggle",
 --     },
 -- }
-lvim.plugins = {
-  { "rcarriga/nvim-dap-ui" },
-  { "mfussenegger/nvim-dap-python" }
-}
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
