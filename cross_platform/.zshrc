@@ -3,6 +3,8 @@ export PATH=/usr/local/bin:$HOME/.local/bin:$PATH
 
 alias penv='source ./env/bin/activate'
 
+export EDITOR='lvim'
+
 # EVERYTHING BELOW IS AUTO-GEN BY OH-MY-ZSH INSTALLATION
 
 # Path to your oh-my-zsh installation.
