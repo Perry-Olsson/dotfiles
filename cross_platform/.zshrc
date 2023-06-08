@@ -1,14 +1,14 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/arch_linux_install:$HOME/scripts:$HOME/bin:/usr/local/bin:$PATH
+export PATH=/usr/local/bin:$HOME/.local/bin:$PATH
 
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+alias penv='source ./env/bin/activate'
 
 # EVERYTHING BELOW IS AUTO-GEN BY OH-MY-ZSH INSTALLATION
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+
+# python
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -105,8 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vim="lvim"
-if type rg &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='rg --files --hidden'
-    export FZF_DEFAULT_OPTS='-m --height 50% --border'
+
+if test -f "$script_dir/.zsh_mixin"; then
+  source $HOME/.zsh_mixin
 fi
