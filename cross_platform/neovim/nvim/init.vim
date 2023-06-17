@@ -1,6 +1,5 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
-source ~/.vimrc
 
 call plug#begin("$HOME/.config/nvim/plugged")
 Plug 'mfussenegger/nvim-jdtls'
