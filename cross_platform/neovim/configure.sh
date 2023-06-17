@@ -2,7 +2,6 @@
 script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 cp -a $script_dir/nvim/. $HOME/.config/nvim
-cp $script_dir/.vimrc $HOME/.vimrc
 
 cat << EOF >> $HOME/.zshrc
 alias vim="nvim"

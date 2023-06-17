@@ -1,11 +1,99 @@
 ---@diagnostic disable: undefined-global
 require("mason").setup()
+local opts = { noremap=true, silent=true }
 --[[ 
 **************************************************************
 *************************VIM CONFIG***************************
 **************************************************************
 --]]
+vim.g.mapleader = " "
+vim.cmd("colorscheme tokyonight")
+vim.keymap.set("n", "<leader>cc", ":tabnew $HOME/.vimrc<CR>", opts)
+vim.keymap.set("n", "<leader>vi", ":edit $HOME/.vimrc<CR>", opts)
+vim.keymap.set("n", "<leader>ls", ":edit $HOME/.config/nvim/lua/config.lua<CR>", opts)
+vim.keymap.set("n", "<leader>nt", ":help nvim-tree-setup<CR>", opts)
+vim.keymap.set("n", "<leader>h", ":noh<CR>", opts)
+vim.keymap.set("n", "<leader>h", ":noh<CR>", opts)
+vim.keymap.set("i", "jk", "<ESC>", opts)
+
+-- TELESCOPE
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
+vim.keymap.set("n", "<leader>fd", "<cmd>Telescope find_files hidden=true<cr>", opts)
+vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
+vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
+vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
+
+vim.cmd("nmap <leader>e  <leader>t <cmd>NvimTreeToggle<CR> <cmd>vertical resize 35<CR>")
+
+
+vim.keymap.set("n", "<C-L>", "nohl<CR><C-L>", opts)
+vim.keymap.set("n", "<leader>wv", "<C-W>v", opts)
+vim.keymap.set("n", "<leader>wc", "<C-W>s", opts)
+vim.keymap.set("n", "<leader>wd", ":lcd %:p:h<CR>", opts)
+
+-- split resizing
+vim.keymap.set("n", "<A-=>", ":res +5<CR>", opts)
+vim.keymap.set("n", "<A-->", ":res -5<CR>", opts)
+vim.keymap.set("n", "=", ":vertical res +15<CR>", opts)
+vim.keymap.set("n", "-", ":vertical res -15<CR>", opts)
+
+-- split movements
+vim.keymap.set("n", "<A-h>", "<C-W>h", opts)
+vim.keymap.set("n", "<A-j>", "<C-W>j", opts)
+vim.keymap.set("n", "<A-k>", "<C-W>k", opts)
+vim.keymap.set("n", "<A-l>", "<C-W>l", opts)
+vim.keymap.set("i", "<A-h>", "<C-\\><C-N><C-w>h", opts)
+vim.keymap.set("i", "<A-j>", "<C-\\><C-N><C-w>j", opts)
+vim.keymap.set("i", "<A-k>", "<C-\\><C-N><C-w>k", opts)
+vim.keymap.set("i", "<A-l>", "<C-\\><C-N><C-w>l", opts)
+vim.keymap.set("t", "<A-h>", "<C-\\><C-N><C-w>h", opts)
+vim.keymap.set("t", "<A-j>", "<C-\\><C-N><C-w>j", opts)
+vim.keymap.set("t", "<A-k>", "<C-\\><C-N><C-w>k", opts)
+vim.keymap.set("t", "<A-l>", "<C-\\><C-N><C-w>l", opts)
+
+-- remap copy to clipboard
+vim.keymap.set("n", "<leader>yy", "+yy", opts)
+vim.keymap.set("n", "<leader>y", "+y", opts)
+
+-- terminal emulator
+vim.cmd("nnoremap <leader>t <C-W>s<C-W>j:terminal<CR> :resize 10<CR>")
+vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", opts)
+
+vim.cmd("map Y y$")
 vim.g.netrw_liststyle = 3 -- Tree-style view
+vim.g.netrw_keepdir = 0
+vim.opt.compatible = false
+vim.opt.hidden = true
+vim.opt.wildmenu = true
+vim.opt.showcmd = true
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.backspace = { 'indent', 'eol', 'start' }
+vim.opt.autoindent = true
+vim.opt.startofline = false
+vim.opt.ruler = true
+vim.opt.confirm = true
+vim.opt.visualbell = true
+vim.opt.cmdheight = 2
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+vim.cmd("set notimeout ttimeout ttimeoutlen=200")
+vim.cmd("set t_vb=")
+vim.cmd([[
+if has('mouse')
+  set mouse=a
+endif
+]])
+vim.cmd([[
+if has('filetype')
+  filetype indent plugin on
+endif
+]])
 --[[ 
 **************************************************************
 *************************DAP CONFIG***************************
@@ -165,7 +253,6 @@ require("nvim-tree").setup({
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<leader><S-e>', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', '<leader>di', vim.diagnostic.goto_next, opts)
@@ -196,7 +283,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', "<cmd>Telescope lsp_references<cr>", bufopts)
-  vim.keymap.set('n', '<leader><S-f>', vim.lsp.buf.formatting, bufopts)
+ -- vim.keymap.set('n', '<leader><S-f>', vim.lsp.buf.formatting, bufopts)
 end
 
 local lsp_flags = {
@@ -219,15 +306,6 @@ lsp_config.sumneko_lua.setup{
     on_attach = on_attach,
     flags = lsp_flags
 }
-lsp_config.terraformls.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
-vim.api.nvim_create_autocmd({"BufWritePre"}, {
-  pattern = {"*.tf", "*.tfvars"},
-  callback = vim.lsp.buf.formatting_sync,
-})
 lsp_config.pyright.setup{
     capabilities = capabilities,
     on_attach = on_attach,

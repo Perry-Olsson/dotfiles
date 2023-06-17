@@ -3,10 +3,6 @@ set -e
 
 script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-cp $HOME/.vimrc $script_dir/.vimrc
-echo "copied vimrc rile"
-cp -r $HOME/.config/nvim $script_dir
+cp $HOME/.config/nvim/init.vim $script_dir/nvim
+cp -r $HOME/.config/nvim/lua $script_dir/nvim
 echo "copied nvim configuration directory"
-rm -rf $script_dir/nvim/plugged
-echo "removed pluggins directory"
-
