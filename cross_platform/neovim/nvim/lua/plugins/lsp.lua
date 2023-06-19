@@ -1,7 +1,7 @@
 ---@diagnostic disable: undefined-global
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 vim.keymap.set('n', '<leader><S-e>', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', '<leader>di', vim.diagnostic.goto_next, opts)
@@ -50,7 +50,7 @@ lsp_config.tsserver.setup{
     on_attach = on_attach,
     flags = lsp_flags
 }
-lsp_config.sumneko_lua.setup{
+lsp_config.lua_ls.setup{
     capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flags
