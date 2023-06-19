@@ -1,20 +1,13 @@
 ---@diagnostic disable: undefined-global
 local opts = { noremap=true, silent=true }
+local get_opts = function(desc)
+    return { noremap=true, silent=true, desc=desc }
+end
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>cc", ":tabnew $HOME/.vimrc<CR>", opts)
-vim.keymap.set("n", "<leader>vi", ":edit $HOME/.vimrc<CR>", opts)
-vim.keymap.set("n", "<leader>ls", ":edit $HOME/.config/nvim/lua/config.lua<CR>", opts)
-vim.keymap.set("n", "<leader>nt", ":help nvim-tree-setup<CR>", opts)
-vim.keymap.set("n", "<leader>h", ":noh<CR>", opts)
-vim.keymap.set("n", "<leader>h", ":noh<CR>", opts)
+vim.keymap.set("n", "<leader>ls", ":edit $HOME/.config/nvim/lua/config.lua<CR>", get_opts("Edit config.lua"))
+vim.keymap.set("n", "<leader>nt", ":help nvim-tree-setup<CR>", get_opts("Nvim tree setup help"))
+vim.keymap.set("n", "<leader>h", ":noh<CR>", get_opts("No highlight"))
 vim.keymap.set("i", "jk", "<ESC>", opts)
-
--- TELESCOPE
-vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
-vim.keymap.set("n", "<leader>fd", "<cmd>Telescope find_files hidden=true<cr>", opts)
-vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
-vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
-vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
 
 vim.cmd("nmap <leader>e  <leader>t <cmd>NvimTreeToggle<CR> <cmd>vertical resize 35<CR>")
 

@@ -1,6 +1,6 @@
 ---@diagnostic disable: undefined-global
 local dapui = require("dapui")
-vim.keymap.set("n", "<leader>du", dapui.toggle)
+vim.keymap.set("n", "<leader>du", dapui.toggle, { desc="Toggle debug ui" })
 dapui.setup({
   icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
   mappings = {

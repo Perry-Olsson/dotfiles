@@ -1,12 +1,12 @@
 ---@diagnostic disable: undefined-global
 local dap = require("dap")
-vim.keymap.set("n", "<leader>8", dap.continue)
-vim.keymap.set("n", "<leader>9", dap.step_over)
-vim.keymap.set("n", "<leader>0", dap.step_into)
-vim.keymap.set("n", "<leader>-", dap.step_out)
-vim.keymap.set("n", "<leader>=", dap.terminate)
-vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
-vim.keymap.set("n", "<leader>dr", dap.repl.open)
+vim.keymap.set("n", "<leader>8", dap.continue, { desc="Debug continue" })
+vim.keymap.set("n", "<leader>9", dap.step_over, { desc="Debug step over" })
+vim.keymap.set("n", "<leader>0", dap.step_into, { desc="Debug step into" })
+vim.keymap.set("n", "<leader>-", dap.step_out, { desc="Debug step out" })
+vim.keymap.set("n", "<leader>=", dap.terminate, { desc="Debug terminate" })
+vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc="Debug toggle breakpoint" })
+vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc="Debug open repl" })
 -- **********************C++/C/RUST**************************
 dap.adapters.lldb = {
   type = 'executable',
