@@ -9,7 +9,7 @@ vim.keymap.set("n", "<leader>nt", ":help nvim-tree-setup<CR>", get_opts("Nvim tr
 vim.keymap.set("n", "<leader>h", ":noh<CR>", get_opts("No highlight"))
 vim.keymap.set("i", "jk", "<ESC>", opts)
 
-vim.cmd("nmap <leader>e  <leader>t <cmd>NvimTreeToggle<CR> <cmd>vertical resize 35<CR>")
+vim.cmd("nmap <leader>e  <cmd>NvimTreeToggle<CR> <cmd>vertical resize 35<CR>")
 
 
 vim.keymap.set("n", "<C-L>", "nohl<CR><C-L>", opts)
