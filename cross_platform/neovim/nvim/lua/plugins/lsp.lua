@@ -63,7 +63,7 @@ lsp_config.pyright.setup{
     on_attach = on_attach,
     flags = lsp_flags
 }
-lsp_config.ccls.setup {
+lsp_config.clangd.setup {
     capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flags
