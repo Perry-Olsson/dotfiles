@@ -1,16 +1,11 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=/usr/local/bin:$HOME/.local/bin:$PATH
-
-alias penv='source ./env/bin/activate'
-
-export EDITOR='lvim'
-
-# EVERYTHING BELOW IS AUTO-GEN BY OH-MY-ZSH INSTALLATION
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
-# python
+alias penv='source ./env/bin/activate'
+export EDITOR='nvim'
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -107,7 +102,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
+export PATH="$HOME/.bin/nvim-linux64/bin:$HOME/.local/bin:$PATH"
 if test -f "$script_dir/.zsh_mixin"; then
   source $HOME/.zsh_mixin
 fi
+neofetch

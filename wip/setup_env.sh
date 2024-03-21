@@ -3,7 +3,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 update_and_install_packages () {
     sudo apt update
-    sudo apt install git gh libc6-dev zsh
+    sudo apt install git gh libc6-dev zsh neofetch
 }
 
 create_dirs_and_modify_path () {
@@ -43,10 +43,6 @@ clone_env_setup_repo () {
     git clone git@github.com:Perry-Olsson/environment-setups.git
 }
 
-copy_environment_config () {
-    /bin/bash SCRIPT_DIR/environment-setups/cross_platform/neovim/update_config.sh
-}
-
 install_terminal_emulator () {
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
     ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
@@ -65,12 +61,19 @@ install_zsh () {
     echo 'export PATH="$HOME/.bin/nvim-linux64/bin:$HOME/.local/bin:$PATH"' >> $HOME/.zshrc
 }
 
+copy_environment_config () {
+    /bin/bash $SCRIPT_DIR/environment-setups/cross_platform/neovim/update_config.sh
+    /bin/bash $SCRIPT_DIR/environment-setups/linux/update_config.sh
+    cp $SCRIPT_DIR/environment-setups/cross_platform/.zshrc $HOME/.zshrc
+}
+
+
 # update_and_install_packages
 # create_dirs_and_modify_path
 # install_neovim
 # install_fonts
+# install_terminal_emulator
+# install_zsh
 # generate_ssh_key
 # clone_env_setup_repo
 # copy_environment_config
-# install_terminal_emulator
-# install_zsh
