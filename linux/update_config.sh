@@ -10,3 +10,6 @@ cp $script_dir/x11/.xprofile $HOME/.xprofile
 
 # copy kitty conf
 cp -a $script_dir/kitty/kitty.conf $HOME/.config/kitty/kitty.conf
+
+#copy qtile
+sudo cp $script_dir/qtile/qtile.desktop /usr/share/xsessions/

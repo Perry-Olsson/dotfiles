@@ -3,7 +3,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 update_and_install_packages () {
     sudo apt update
-    sudo apt install git gh libc6-dev zsh neofetch
+    sudo apt install git gh libc6-dev zsh neofetch dmenu xserver-xorg xinit libpangocairo-1.0-0 python3-pip python3-xcffib python3-cairocffi
 }
 
 create_dirs_and_modify_path () {
@@ -59,6 +59,10 @@ install_zsh () {
     chsh -s $(which zsh)
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     echo 'export PATH="$HOME/.bin/nvim-linux64/bin:$HOME/.local/bin:$PATH"' >> $HOME/.zshrc
+}
+
+install_qtile () {
+    pip install qtile
 }
 
 copy_environment_config () {
