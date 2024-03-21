@@ -2,15 +2,21 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 update_and_install_packages () {
-    sudo apt-get update
-    sudo apt-get install git gh libc6-dev
+    sudo apt update
+    sudo apt install git gh libc6-dev zsh
+}
+
+create_dirs_and_modify_path () {
+    mkdir $HOME/.bin
+    mkdir $HOME/.local/bin
+    echo 'export PATH="$HOME/.bin/nvim-linux64/bin:$HOME/.local/bin:$PATH"' >> $HOME/.bashrc
 }
 
 install_neovim () {
-    mkdir $HOME/.bin
     wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+    rm -rf $HOME/.config/nvim
+    mkdir $HOME/.config/nvim
     tar -xzvf nvim-linux64.tar.gz -C $HOME/.bin
-    echo 'export PATH="$HOME/.bin/nvim-linux64/bin:$PATH"' >> $HOME/.bashrc
 }
 
 install_fonts () {
@@ -38,14 +44,33 @@ clone_env_setup_repo () {
 }
 
 copy_environment_config () {
-    rm -rf $HOME/.config/nvim
-    mkdir $HOME/.config/nvim
     /bin/bash SCRIPT_DIR/environment-setups/cross_platform/neovim/update_config.sh
 }
 
-update_and_install_packages
-install_neovim
-install_fonts
-generate_ssh_key
-clone_env_setup_repo
-copy_environment_config
+install_terminal_emulator () {
+    curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+    ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+    # Place the kitty.desktop file somewhere it can be found by the OS
+    cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+    # If you want to open text files and images in kitty via your file manager also add the kitty-open.desktop file
+    cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
+    # Update the paths to the kitty and its icon in the kitty.desktop file(s)
+    sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+    sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+}
+
+install_zsh () {
+    chsh -s $(which zsh)
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    echo 'export PATH="$HOME/.bin/nvim-linux64/bin:$HOME/.local/bin:$PATH"' >> $HOME/.zshrc
+}
+
+# update_and_install_packages
+# create_dirs_and_modify_path
+# install_neovim
+# install_fonts
+# generate_ssh_key
+# clone_env_setup_repo
+# copy_environment_config
+# install_terminal_emulator
+# install_zsh
