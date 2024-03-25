@@ -61,6 +61,11 @@ install_qtile () {
     pip install qtile
 }
 
+install_node () {
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    nvm install 20
+}
+
 copy_environment_config () {
     /bin/bash $SCRIPT_DIR/environment-setups/cross_platform/neovim/update_config.sh
     /bin/bash $SCRIPT_DIR/environment-setups/linux/update_config.sh
@@ -76,4 +81,5 @@ copy_environment_config () {
 # generate_ssh_key
 # clone_env_setup_repo
 # install_qtile
+# install_node
 # copy_environment_config

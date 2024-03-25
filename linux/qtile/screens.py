@@ -35,12 +35,7 @@ class WidgetConfig:
 
 widget_config = WidgetConfig()
 
-def init_screens():
-    return [ 
-            Screen(
-                wallpaper="~/Pictures/backgrounds/mpiwnicki_smoke.jpg",
-                wallpaper_mode="stretch",
-                top=bar.Bar(
+bottom_bar = bar.Bar(
                     [ 
                         widget.Sep(
                             background=theme["dark_gray_blue"],
@@ -116,13 +111,14 @@ def init_screens():
                         ),
                         widget.Spacer(),
                         widget.Volume(
-                            background = theme_tuple_two[0],
+                            background = theme_tuple_one[0],
                             emoji=True,
                             padding=widget_config.padding,
-                            fontsize=widget_config.icon_font_size
+                            fontsize=widget_config.icon_font_size,
+                            volume_app="pavucontrol"
                             ),
                         widget.CapsNumLockIndicator(
-                            background=theme_tuple_one[0],
+                            background=theme_tuple_two[0],
                             font='Ubuntu',
                             fontsize=widget_config.font_size,
                             foreground=widget_config.foreground,
@@ -130,6 +126,19 @@ def init_screens():
                             scroll=True,
                             scroll_fixed_width=True,
                             width=125
+                        ),
+                        widget.NetGraph(
+                            background=theme_tuple_one[0],
+                            bandwidth="down",
+                            border_color=theme["very_dark_gray_blue"],
+                            border_width=0,
+                            fill_color=theme_tuple_one[0], #88c0d0
+                            foreground=theme_tuple_one[0],
+                            graph_color=theme["white"],
+                            interface="auto",
+                            line_width=1,
+                            padding=widget_config.padding,
+                            type='linefill'
                         ),
                         widget.Sep(
                             background=theme_tuple_two[0],
@@ -185,48 +194,53 @@ def init_screens():
                             scroll_fixed_width=True,
                             width=100
                         ),
-        #                widget.Net(
-        #                    background=theme_tuple_two[0],
-        #                    font='Ubuntu',
-        #                    fontsize=widget_config.font_size,
-        #                    foreground=widget_config.foreground,
-        #                    format='{interface}: {down} ↓ ',
-        #                    interface='all',
-        #                    padding=3,
-        #                ),
-                        widget.NetGraph(
-                            background=theme_tuple_two[0],
-                            bandwidth="down",
-                            border_color=theme["very_dark_gray_blue"],
-                            border_width=0,
-                            fill_color=theme_tuple_two[0], #88c0d0
-                            foreground=theme_tuple_two[0],
-                            graph_color=theme["white"],
-                            interface="auto",
-                            line_width=1,
-                            padding=widget_config.padding,
-                            type='linefill'
-                        ),
-                        widget.TextBox(
-                            background=theme_tuple_one[0],
-                            font='Ubuntu Nerd Font',
-                            fontsize=14,
-                            foreground=widget_config.foreground,
-                            padding=widget_config.padding,
-                            text=' '
-                        ),
-                        widget.Clock(
-                            background=theme_tuple_one[0],
-                            font='Ubuntu',
-                            fontsize=widget_config.font_size,
-                            foreground=widget_config.foreground,
-                            padding=5,
-                            format='%a %d, (%B) %H:%M:%S '
-                        ),
                     ],
                     28,
                     opacity=1,
                     background=theme["dark_gray_blue"],
+                    )
+
+top_bar = bar.Bar([
+                    widget.Spacer(),
+                    widget.Sep(
+                        background=theme["dark_gray_blue"],
+                        foreground=theme["very_dark_gray_blue"],
+                        linewidth=1,
+                        padding=10
+                    ),
+                    widget.OpenWeather(
+                        location="Everett, US",
+                        padding=10
+                    ),
+                    widget.Sep(
+                        background=theme["dark_gray_blue"],
+                        foreground=theme["very_dark_gray_blue"],
+                        linewidth=1,
+                        padding=10
+                    ),
+                    widget.TextBox(
+                        font='Ubuntu Nerd Font',
+                        fontsize=14,
+                        padding=widget_config.padding,
+                        text=' '
+                    ),
+                    widget.Clock(
+                        font='Ubuntu',
+                        fontsize=widget_config.font_size,
+                        padding=5,
+                        format='%a %d, (%B) %H:%M:%S '
+                    ),
+                  ],
+                  28,
+                  background=theme["dark_gray_blue"]
+                  )
+
+def init_screens():
+    return [ 
+            Screen(
+                wallpaper="~/Pictures/backgrounds/mpiwnicki_smoke.jpg",
+                wallpaper_mode="stretch",
+                top=bottom_bar,
+                bottom=top_bar
                 ),
-            ),
         ]
