@@ -4,6 +4,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 create_dirs_and_modify_path () {
     mkdir $HOME/.bin
     mkdir $HOME/.local/bin
+    mkdir $HOME/Pictures/backgrounds
     echo 'export PATH="$HOME/.bin/nvim-linux64/bin:$HOME/.local/bin:$PATH"' >> $HOME/.bashrc
 }
 
@@ -64,6 +65,7 @@ copy_environment_config () {
     /bin/bash $SCRIPT_DIR/environment-setups/cross_platform/neovim/update_config.sh
     /bin/bash $SCRIPT_DIR/environment-setups/linux/update_config.sh
     cp $SCRIPT_DIR/environment-setups/cross_platform/.zshrc $HOME/.zshrc
+    cp $SCRIPT_DIR/environment-setups/linux/backgrounds/* $HOME/Pictures/backgrounds/
 }
 
 # create_dirs_and_modify_path

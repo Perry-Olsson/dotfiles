@@ -38,6 +38,8 @@ widget_config = WidgetConfig()
 def init_screens():
     return [ 
             Screen(
+                wallpaper="~/Pictures/backgrounds/mpiwnicki_smoke.jpg",
+                wallpaper_mode="stretch",
                 top=bar.Bar(
                     [ 
                         widget.Sep(
@@ -52,18 +54,17 @@ def init_screens():
                             background=theme["dark_gray_blue"],
                             mouse_callbacks={'Button1': lambda : qtile.cmd_spawn('rofi -show run')}
                             ),
-                        # widget.Sep(
-                        #     background=theme["dark_gray_blue"],
-                        #     foreground=theme["very_dark_gray_blue"],
-                        #     linewidth=1,
-                        #     padding=10
-                        # ),
+                        widget.Sep(
+                            background=theme["dark_gray_blue"],
+                            foreground=theme["very_dark_gray_blue"],
+                            linewidth=1,
+                            padding=10
+                        ),
                         widget.GroupBox(
                             active=theme["slightly_desaturated_red"], 
                             background=theme["dark_gray_blue"],
                             borderwidth=2,
                             disable_drag=True,
-                            font='Ubuntu Nerd Font',
                             fontsize=18,
                             hide_unused=False,
                             highlight_method='line',
