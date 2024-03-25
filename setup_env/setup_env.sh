@@ -75,4 +75,5 @@ copy_environment_config () {
 # install_zsh
 # generate_ssh_key
 # clone_env_setup_repo
+# install_qtile
 # copy_environment_config
