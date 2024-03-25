@@ -12,16 +12,15 @@ theme_tuple_two = (PowerlineTheme.THEME_ONE, PowerlineTheme.THEME_TWO)
 theme_tuple_one = (PowerlineTheme.THEME_TWO, PowerlineTheme.THEME_ONE)
 
 def themed_left_to_right_powerline(theme_tuple, is_last_power_line = False):
-    return powerline_seprator(theme_tuple, '', is_last_power_line)
+    return powerline_seprator(theme_tuple, '▶', is_last_power_line)
 
 def themed_right_to_left_powerline(theme_tuple, is_last_power_line = False):
-    return powerline_seprator(theme_tuple, '', is_last_power_line)
+    return powerline_seprator(theme_tuple, '', is_last_power_line)
 
 def powerline_seprator(theme_tuple, arrow, is_last_power_line):
     return widget.TextBox(
             background=theme["dark_gray_blue"] if is_last_power_line else theme_tuple[0],
-            font='Ubuntu Nerd Font',
-            fontsize=31,
+            fontsize=35,
             foreground=theme_tuple[1],
             padding=0,
             text=arrow
@@ -53,12 +52,12 @@ def init_screens():
                             background=theme["dark_gray_blue"],
                             mouse_callbacks={'Button1': lambda : qtile.cmd_spawn('rofi -show run')}
                             ),
-                        widget.Sep(
-                            background=theme["dark_gray_blue"],
-                            foreground=theme["very_dark_gray_blue"],
-                            linewidth=1,
-                            padding=10
-                        ),
+                        # widget.Sep(
+                        #     background=theme["dark_gray_blue"],
+                        #     foreground=theme["very_dark_gray_blue"],
+                        #     linewidth=1,
+                        #     padding=10
+                        # ),
                         widget.GroupBox(
                             active=theme["slightly_desaturated_red"], 
                             background=theme["dark_gray_blue"],
@@ -115,23 +114,27 @@ def init_screens():
                             foreground=theme["very_dark_gray_blue"]
                         ),
                         widget.Spacer(),
-                        themed_left_to_right_powerline(theme_tuple_one, True),
-                        widget.PulseVolume(
+                        widget.Volume(
                             background = theme_tuple_two[0],
-                            volume_app="pavucontrol",
                             emoji=True,
                             padding=widget_config.padding,
                             fontsize=widget_config.icon_font_size
                             ),
-                        themed_left_to_right_powerline(theme_tuple_two),
                         widget.CapsNumLockIndicator(
                             background=theme_tuple_one[0],
                             font='Ubuntu',
                             fontsize=widget_config.font_size,
                             foreground=widget_config.foreground,
+                            padding=widget_config.padding,
+                            scroll=True,
+                            scroll_fixed_width=True,
+                            width=125
+                        ),
+                        widget.Sep(
+                            background=theme_tuple_two[0],
+                            foreground=theme_tuple_two[0],
                             padding=widget_config.padding
                         ),
-                        themed_left_to_right_powerline(theme_tuple_one),
                         widget.TextBox(
                             background=theme_tuple_two[0],
                             font='Ubuntu Nerd Font',
@@ -146,14 +149,21 @@ def init_screens():
                             foreground=widget_config.foreground,
                             font='Ubuntu',
                             format="{MemUsed: .0f}{mm}",
-                            update_interval=1.0
+                            update_interval=1.0,
+                            scroll=True,
+                            scroll_fixed_width=True,
+                            width=55
                         ),
                         widget.Sep(
                             background=theme_tuple_two[0],
                             foreground=theme_tuple_two[0],
                             padding=widget_config.padding
                         ),
-                        themed_left_to_right_powerline(theme_tuple_two),
+                        widget.Sep(
+                            background=theme_tuple_one[0],
+                            foreground=theme_tuple_one[0],
+                            padding=widget_config.padding
+                        ),
                         widget.TextBox(
                             background=theme_tuple_one[0],
                             font='Ubuntu Nerd Font',
@@ -169,14 +179,11 @@ def init_screens():
                             foreground=widget_config.foreground,
                             format='CPU {load_percent}%',
                             update_interval=1,
-                            padding=0
+                            padding=widget_config.padding,
+                            scroll=True,
+                            scroll_fixed_width=True,
+                            width=100
                         ),
-                        widget.Sep(
-                            background=theme_tuple_one[0],
-                            foreground=theme_tuple_one[0],
-                            padding=10
-                        ),
-                        themed_left_to_right_powerline(theme_tuple_one),
         #                widget.Net(
         #                    background=theme_tuple_two[0],
         #                    font='Ubuntu',
@@ -196,16 +203,15 @@ def init_screens():
                             graph_color=theme["white"],
                             interface="auto",
                             line_width=1,
-                            padding=0,
+                            padding=widget_config.padding,
                             type='linefill'
                         ),
-                        themed_left_to_right_powerline(theme_tuple_two),
                         widget.TextBox(
                             background=theme_tuple_one[0],
                             font='Ubuntu Nerd Font',
                             fontsize=14,
                             foreground=widget_config.foreground,
-                            padding=0,
+                            padding=widget_config.padding,
                             text=' '
                         ),
                         widget.Clock(
