@@ -35,7 +35,7 @@ class WidgetConfig:
 
 widget_config = WidgetConfig()
 
-bottom_bar = bar.Bar(
+top_bar = bar.Bar(
                     [ 
                         widget.Sep(
                             background=theme["dark_gray_blue"],
@@ -194,13 +194,24 @@ bottom_bar = bar.Bar(
                             scroll_fixed_width=True,
                             width=100
                         ),
+                        widget.QuickExit(
+                            background=theme_tuple_two[0],
+                            fontsize=17,
+                            foreground=widget_config.foreground,
+                            padding=widget_config.padding,
+                            scroll=True,
+                            scroll_fixed_width=True,
+                            default_text="⏻",
+                            countdown_format="{}",
+                            width=35
+                        ),
                     ],
                     28,
                     opacity=1,
                     background=theme["dark_gray_blue"],
                     )
 
-top_bar = bar.Bar([
+bottom_bar = bar.Bar([
                     widget.Spacer(),
                     widget.Sep(
                         background=theme["dark_gray_blue"],
@@ -240,7 +251,7 @@ def init_screens():
             Screen(
                 wallpaper="~/Pictures/backgrounds/mpiwnicki_smoke.jpg",
                 wallpaper_mode="stretch",
-                top=bottom_bar,
-                bottom=top_bar
+                top=top_bar,
+                bottom=bottom_bar
                 ),
         ]
