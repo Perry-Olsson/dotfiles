@@ -30,7 +30,7 @@ from libqtile.config import EzClick as Click, EzDrag as Drag, Group, EzKey as Ke
 from libqtile.lazy import lazy
 from typing import List  # noqa: F401
 from keys import init_keys
-from groups import init_groups, groups
+from groups import groups
 from layout import init_layout
 from constants import CONSTANTS
 from screens import init_screens

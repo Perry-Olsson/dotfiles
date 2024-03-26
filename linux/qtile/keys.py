@@ -2,7 +2,7 @@ from typing import List
 from libqtile.config import EzKey as Key, Group 
 from libqtile.lazy import lazy
 from constants import CONSTANTS
-from functions import shutdown
+from functions import shutdown 
 
 
 def init_keys(groups: List[Group]):
@@ -62,20 +62,18 @@ def init_keys(groups: List[Group]):
 
                 # Keybindings to launch user defined programs
                 Key("A-d", lazy.spawn("dmenu_run"), desc="Launch dmenu"),
-                Key("A-e", lazy.spawn("emacs"), desc="Launch emacs"),
                 Key("A-f", lazy.spawn("thunar"), desc="Launch thunar"),
                 Key("A-m", lazy.spawn("/usr/local/src/thunderbird/thunderbird"), desc="Launch thunderbird"),
                 Key("A-n", lazy.spawn("nitrogen"), desc="Launch nitrogen"),
                 Key("A-r", lazy.spawn("rofi -show run"), desc="Launch rofi"),
-                Key("A-s", lazy.spawn("st"), desc="Launch suckless terminal"),
                 Key("A-t", lazy.spawn(CONSTANTS.TERMINAL), desc="Launch terminal"),
-                Key("A-w", lazy.spawn("/usr/local/src/waterfox/waterfox-bin"), desc="Launch waterfox"),
-                Key("A-C-w", lazy.spawn("brave-browser"), desc="Launch brave-browser"),
-                Key("A-C-s", lazy.spawn("/usr/local/src/sublime_text/sublime_text"), desc="Launch sublime_text"),
+                Key("C-l", lazy.screen.next_group(), desc="move to next group"),
+                Key("C-h", lazy.screen.prev_group(), desc="move to previous group")
             ]
-    
+
     for k, group in zip(["1", "2", "3", "4", "5", "6", "7", "8"], groups):
         keys.append(Key("M-"+(k), lazy.group[group.name].toscreen()))
         keys.append(Key("M-S-"+(k), lazy.window.togroup(group.name)))
+
 
     return keys
