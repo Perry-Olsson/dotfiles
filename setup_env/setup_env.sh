@@ -2,17 +2,16 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 create_dirs_and_modify_path () {
-    mkdir $HOME/.bin
     mkdir $HOME/.local/bin
     mkdir $HOME/Pictures/backgrounds
-    echo 'export PATH="$HOME/.local/bin:$PATH"' >> $HOME/.bashrc
 }
 
 install_neovim () {
     wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
     rm -rf $HOME/.config/nvim
     mkdir $HOME/.config/nvim
-    tar -xzvf nvim-linux64.tar.gz -C $HOME/.bin
+    sudo rm -rf /opt/nvim
+    sudo tar -xzf nvim-linux64.tar.gz -C /opt 
 }
 
 install_fonts () {
@@ -54,7 +53,6 @@ install_terminal_emulator () {
 install_zsh () {
     chsh -s $(which zsh)
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    echo 'export PATH="$HOME/.bin/nvim-linux64/bin:$HOME/.local/bin:$PATH"' >> $HOME/.zshrc
 }
 
 install_qtile () {

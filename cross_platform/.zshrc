@@ -102,8 +102,13 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH="$HOME/.bin/nvim-linux64/bin:$HOME/.local/bin:$PATH"
-if test -f "$script_dir/.zsh_mixin"; then
+export PATH="$HOME/.local/bin:$PATH"
+if [ -e $HOME/.zsh_mixin ]
+then
   source $HOME/.zsh_mixin
 fi
 neofetch
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
