@@ -7,7 +7,7 @@ require("plugins.dapui")
 require("plugins.lsp")
 require("plugins.cmp")
 require("plugins.treesitter")
-require("plugins.treesitter")
+require("plugins.lualine")
 vim.cmd("colorscheme tokyonight")
 local get_opts = function(desc)
     return { noremap=true, silent=true, desc=desc }
@@ -27,14 +27,11 @@ require("nvim-tree").setup({
 **********************TELESCOPE CONFIG************************
 **************************************************************
 --]]
-require("telescope").setup({
-    defaults = {
-        file_ignore_patterns = { "%.git/", "%build/", "%.class" }
-    }
-})
+
 -- TELESCOPE
-vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", get_opts("Find files"))
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set("n", "<leader>fd", "<cmd>Telescope find_files hidden=true<cr>", get_opts("Find files (include hidden)"))
-vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", get_opts("Search text"))
-vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
-vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)

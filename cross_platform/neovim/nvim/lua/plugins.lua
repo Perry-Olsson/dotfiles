@@ -28,7 +28,10 @@ require("lazy").setup({
     "kyazdani42/nvim-web-devicons",
     "kyazdani42/nvim-tree.lua",
     "nvim-lua/plenary.nvim",
-    { "nvim-telescope/telescope.nvim", tag = '0.1.0' },
+    {
+    'nvim-telescope/telescope.nvim', tag = '0.1.6',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+    },
     "neovim/nvim-lspconfig",
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-nvim-lsp",
@@ -36,7 +39,8 @@ require("lazy").setup({
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
     "L3MON4D3/LuaSnip",
-    "nvim-lualine/lualine.nvim",
+    { "nvim-neotest/nvim-nio" },
+    { "nvim-lualine/lualine.nvim", dependencies={ "nvim-tree/nvim-web-devicons" } },
     "kyazdani42/nvim-web-devicons",
     "wbthomason/packer.nvim",
     {

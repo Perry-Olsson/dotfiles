@@ -5,7 +5,7 @@ create_dirs_and_modify_path () {
     mkdir $HOME/.bin
     mkdir $HOME/.local/bin
     mkdir $HOME/Pictures/backgrounds
-    echo 'export PATH="$HOME/.bin/nvim-linux64/bin:$HOME/.local/bin:$PATH"' >> $HOME/.bashrc
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> $HOME/.bashrc
 }
 
 install_neovim () {
