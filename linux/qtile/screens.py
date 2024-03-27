@@ -249,7 +249,7 @@ bottom_bar = bar.Bar([
 def init_screens():
     return [ 
             Screen(
-                wallpaper="~/Pictures/backgrounds/mpiwnicki_smoke.jpg",
+                wallpaper="~/Pictures/backgrounds/techno-landscape.jpg",
                 wallpaper_mode="stretch",
                 top=top_bar,
                 bottom=bottom_bar
