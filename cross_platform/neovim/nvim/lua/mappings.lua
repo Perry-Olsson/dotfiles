@@ -46,3 +46,11 @@ vim.cmd("nnoremap <leader>t <C-W>s<C-W>j:terminal<CR> :resize 10<CR>")
 vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", opts)
 
 vim.cmd("map Y y$")
+
+local function get_buf_file_path ()
+    local file_path = vim.api.nvim_buf_get_name(0)
+    file_path = file_path:gsub("/[^/]*$", "")
+    vim.cmd(":cd "..file_path)
+end
+
+vim.keymap.set("n", "cd", get_buf_file_path, opts)

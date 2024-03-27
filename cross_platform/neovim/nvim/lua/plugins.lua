@@ -48,6 +48,7 @@ require("lazy").setup({
     },
     "kyazdani42/nvim-web-devicons",
     "wbthomason/packer.nvim",
+    "lewis6991/gitsigns.nvim",
     {
         "folke/which-key.nvim",
         config = function()
