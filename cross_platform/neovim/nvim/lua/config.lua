@@ -8,6 +8,7 @@ require("plugins.lsp")
 require("plugins.cmp")
 require("plugins.treesitter")
 require("plugins.lualine")
+require("plugins.harpoon")
 vim.cmd("colorscheme tokyonight")
 local get_opts = function(desc)
     return { noremap=true, silent=true, desc=desc }

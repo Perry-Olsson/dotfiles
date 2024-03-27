@@ -41,6 +41,11 @@ require("lazy").setup({
     "L3MON4D3/LuaSnip",
     { "nvim-neotest/nvim-nio" },
     { "nvim-lualine/lualine.nvim", dependencies={ "nvim-tree/nvim-web-devicons" } },
+    {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" }
+    },
     "kyazdani42/nvim-web-devicons",
     "wbthomason/packer.nvim",
     {
