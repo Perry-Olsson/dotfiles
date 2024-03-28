@@ -15,6 +15,12 @@ local function change_working_directory()
     vim.cmd(":cd "..abs_path)
 end
 
+local function change_root_and_working_directory() 
+    local abs_path = api.tree.get_node_under_cursor()["absolute_path"]
+    vim.cmd(":cd "..abs_path)
+    api.tree.change_root(abs_path)
+end
+
 local function run_script()
     local abs_path = api.tree.get_node_under_cursor()["absolute_path"]
     local handle = io.popen(abs_path)
@@ -33,6 +39,7 @@ local function my_on_attach(bufnr)
     vim.keymap.set("n", "<leader>cn", change_root_to_config, opts("change root"))
     vim.keymap.set("n", "<leader>cd", change_working_directory, opts("Change to working directory"))
     vim.keymap.set("n", "<leader>r", run_script, opts("Run shell script"))
+    vim.keymap.set("n", "<C-[>", change_root_and_working_directory, opts("Change root and working directory"))
 end
 
   -- pass to setup along with your other options
