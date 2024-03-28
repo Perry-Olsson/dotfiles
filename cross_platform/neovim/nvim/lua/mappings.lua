@@ -53,4 +53,5 @@ local function get_buf_file_path ()
     vim.cmd(":cd "..file_path)
 end
 
-vim.keymap.set("n", "cd", get_buf_file_path, opts)
+-- Set working directory to current file
+vim.keymap.set("n", "fd", get_buf_file_path, opts)
