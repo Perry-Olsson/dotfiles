@@ -8,9 +8,26 @@ vim.keymap.set("n", "<leader>=", dap.terminate, { desc="Debug terminate" })
 vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc="Debug toggle breakpoint" })
 vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc="Debug open repl" })
 -- **********************C++/C/RUST**************************
-dap.adapters.lldb = {
+dap.adapters.cppdbg = {
+  id = 'cppdbg',
   type = 'executable',
-  command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
+  command = os.getenv("HOME")..'/.local/share/nvim/mason/bin/OpenDebugAD7',
+}
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "cppdbg",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopAtEntry = true,
+  }
+}
+--[[ dap.adapters.lldb = {
+  type = 'executable',
+  command = '/home/polsson/.local/share/nvim/mason/bin/codelldb', -- adjust as needed, must be absolute path
   name = 'lldb'
 }
 dap.configurations.cpp = {
@@ -19,7 +36,7 @@ dap.configurations.cpp = {
     type = 'lldb',
     request = 'launch',
     program = function()
-      return string.format('%s/build/TESTING', vim.fn.getcwd())
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
@@ -38,7 +55,7 @@ dap.configurations.cpp = {
     -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
     -- runInTerminal = false,
   },
-}
+} ]]
 dap.configurations.rust = dap.configurations.cpp
 dap.configurations.c = dap.configurations.cpp
 --[[ 

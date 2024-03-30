@@ -9,7 +9,6 @@ local previous_path = nil
 local function change_root_to_config()
     previous_path = vim.fn.getcwd()
     api.tree.change_root("~/.config/nvim/lua")
-    vim.cmd(":cd ~/.config/nvim/lua")
 end
 
 local function change_back_from_config()
@@ -17,7 +16,6 @@ local function change_back_from_config()
         return
     end
     api.tree.change_root(previous_path)
-    vim.cmd(":cd "..previous_path)
 end
 
 local function change_working_directory()

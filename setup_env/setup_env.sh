@@ -71,6 +71,10 @@ copy_environment_config () {
     cp $SCRIPT_DIR/environment-setups/linux/backgrounds/* $HOME/Pictures/backgrounds/
 }
 
+install_rust () {
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+}
+
 # create_dirs_and_modify_path
 # install_neovim
 # install_fonts
@@ -80,4 +84,5 @@ copy_environment_config () {
 # clone_env_setup_repo
 # install_qtile
 # install_node
+# install_rust
 # copy_environment_config
