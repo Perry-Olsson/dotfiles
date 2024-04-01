@@ -5,6 +5,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 alias penv='source ./env/bin/activate'
+alias python='python3'
 export EDITOR='nvim'
 
 # Set name of the theme to load --- if set to "random", it will
