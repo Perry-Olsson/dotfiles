@@ -52,7 +52,7 @@ local function my_on_attach(bufnr)
     vim.keymap.set("n", "<leader>cn", change_root_to_config, opts("change root"))
     vim.keymap.set("n", "<leader>cb", change_back_from_config, opts("change root"))
     vim.keymap.set("n", "<leader>cd", change_working_directory, opts("Change to working directory"))
-    vim.keymap.set("n", "<leader>r", run_script, opts("Run shell script"))
+    vim.keymap.set("n", "<leader><S-r>", run_script, opts("Run shell script"))
     vim.keymap.set("n", "<leader>]", change_root_and_working_directory, opts("Change root and working directory"))
 end
 
