@@ -4,7 +4,6 @@ from libqtile.lazy import lazy
 from constants import CONSTANTS
 from functions import shutdown 
 
-
 def init_keys(groups: List[Group]):
     keys = [
                 # Switch between windows
@@ -67,8 +66,8 @@ def init_keys(groups: List[Group]):
                 Key("A-n", lazy.spawn("nitrogen"), desc="Launch nitrogen"),
                 Key("A-r", lazy.spawn("rofi -show run"), desc="Launch rofi"),
                 Key("A-t", lazy.spawn(CONSTANTS.TERMINAL), desc="Launch terminal"),
-                Key("C-l", lazy.screen.next_group(), desc="move to next group"),
-                Key("C-h", lazy.screen.prev_group(), desc="move to previous group")
+                Key("C-n", lazy.screen.next_group(), desc="move to next group"),
+                Key("C-p", lazy.screen.prev_group(), desc="move to previous group")
             ]
 
     for k, group in zip(["1", "2", "3", "4", "5", "6", "7", "8"], groups):

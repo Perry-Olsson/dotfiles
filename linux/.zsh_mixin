@@ -1,2 +1,1 @@
 export PATH="/opt/nvim-linux64/bin:$PATH"
-export MY_TERM="x-terminal-emulator"
