@@ -39,6 +39,7 @@ clone_env_setup_repo () {
 }
 
 install_terminal_emulator () {
+    # Kitty term seems ot have perf issues running on virtual box
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
     ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
     # Place the kitty.desktop file somewhere it can be found by the OS
