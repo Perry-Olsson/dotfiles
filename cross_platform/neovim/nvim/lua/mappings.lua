@@ -38,8 +38,11 @@ vim.keymap.set("t", "<A-k>", "<C-\\><C-N><C-w>k", opts)
 vim.keymap.set("t", "<A-l>", "<C-\\><C-N><C-w>l", opts)
 
 -- remap copy to clipboard
-vim.keymap.set("n", "<leader>yy", "+yy", opts)
-vim.keymap.set("n", "<leader>y", "+y", opts)
+vim.keymap.set("n", "<leader>yy", '"+yy', opts)
+vim.keymap.set("v", "<leader>y", '"+y', opts)
+
+-- paste no yank
+vim.keymap.set("v", "<leader>p", "\"_dP")
 
 -- terminal emulator
 vim.cmd("nnoremap <leader>t <C-W>s<C-W>j:terminal<CR> :resize 10<CR>")
