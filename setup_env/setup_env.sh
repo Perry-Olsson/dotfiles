@@ -74,6 +74,7 @@ copy_environment_config () {
 
 install_rust () {
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    cargo install cargo-nextest
 }
 
 # create_dirs_and_modify_path
