@@ -48,6 +48,25 @@ local function run_script()
     print(format)
 end
 
+local function change_root_to_current_buffer() 
+    local file_path = vim.api.nvim_buf_get_name(0)
+    file_path = strip_file_handle(file_path)
+    if file_path == "" then
+        print("No directory found")
+    end
+    api.tree.change_root(file_path)
+end
+
+-- The concise version is also updated for Unix-style paths
+function strip_file_handle(filePath)
+  -- Matches everything from the start up to the last slash,
+  -- but not including the slash itself.
+  -- If no match, it returns nil.
+  return string.match(filePath, "(.*)/[^/]+$") or ""
+end
+
+vim.keymap.set("n", "<leader>cr", change_root_to_current_buffer, opts("change root to current buffer"))
+
 local function my_on_attach(bufnr)
     -- default mappings
     api.config.mappings.default_on_attach(bufnr)

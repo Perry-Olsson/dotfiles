@@ -20,6 +20,7 @@ require("lazy").setup({
     "mfussenegger/nvim-jdtls",
     "williamboman/mason.nvim",
     { "folke/tokyonight.nvim", branch = "main" },
+    "rebelot/kanagawa.nvim",
     "EdenEast/nightfox.nvim",
     "b3nj5m1n/kommentary",
     "mfussenegger/nvim-dap",

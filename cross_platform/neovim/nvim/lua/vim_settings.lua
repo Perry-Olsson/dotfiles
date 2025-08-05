@@ -21,6 +21,11 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        vim.cmd("NvimTreeToggle<CR> <cmd>vertical resize 35<CR>")
+    end
+})
 vim.cmd("set notimeout ttimeout ttimeoutlen=200")
 vim.cmd("set t_vb=")
 vim.cmd([[
@@ -33,4 +38,4 @@ if has('filetype')
   filetype indent plugin on
 endif
 ]])
-vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme kanagawa")

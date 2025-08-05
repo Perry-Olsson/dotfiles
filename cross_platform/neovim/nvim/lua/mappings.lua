@@ -17,7 +17,6 @@ vim.keymap.set("i", "jk", "<ESC>", opts)
 
 vim.cmd("nmap <leader>e  <cmd>NvimTreeToggle<CR> <cmd>vertical resize 35<CR>")
 
-
 vim.keymap.set("n", "<C-L>", "nohl<CR><C-L>", opts)
 vim.keymap.set("n", "<leader>wv", "<C-W>v", opts)
 vim.keymap.set("n", "<leader>wc", "<C-W>s", opts)
