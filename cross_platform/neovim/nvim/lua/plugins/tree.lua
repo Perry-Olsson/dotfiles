@@ -19,13 +19,15 @@ local function change_back_from_config()
 end
 
 local function change_working_directory()
-    local abs_path = api.tree.get_node_under_cursor()["absolute_path"]
+    local node = api.tree.get_node_under_cursor()
+    local abs_path = node["type"] == "directory" and node["absolute_path"] or node["parent"]["absolute_path"]
     print(abs_path)
     vim.cmd(":cd "..abs_path)
 end
 
 local function change_root_and_working_directory()
-    local abs_path = api.tree.get_node_under_cursor()["absolute_path"]
+    local node = api.tree.get_node_under_cursor()
+    local abs_path = node["absolute_path"]
     print(abs_path)
     if abs_path == nil then
         return

@@ -4,6 +4,12 @@ local get_opts = function(desc)
     return { noremap=true, silent=true, desc=desc }
 end
 vim.g.mapleader = " "
+-- quit all
+vim.keymap.set("n", "<leader>q", ":qa<CR>", get_opts("quit all"))
+-- quit window
+vim.keymap.set("n", "q", ":q<CR>", get_opts("quit"))
+-- save
+vim.keymap.set("n", "<leader>s", ":w<CR>", get_opts("save file"))
 vim.keymap.set("n", "<leader>ls", ":edit $HOME/.config/nvim/lua/config.lua<CR>", get_opts("Edit config.lua"))
 vim.keymap.set("n", "<leader>nt", ":help nvim-tree-setup<CR>", get_opts("Nvim tree setup help"))
 vim.keymap.set("n", "<leader>h", ":noh<CR>", get_opts("No highlight"))
