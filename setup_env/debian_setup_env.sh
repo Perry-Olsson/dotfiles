@@ -3,7 +3,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 update_and_install_packages () {
     sudo apt update
-    sudo apt install git gh libc6-dev zsh neofetch dmenu xserver-xorg xinit libpangocairo-1.0-0 python3-pip python3-xcffib python3-cairocffi picom nodejs npm gcc tmux python3.10-venv
+    sudo apt install git gh libc6-dev zsh neofetch dmenu xserver-xorg xinit libpangocairo-1.0-0 python3-pip python3-xcffib python3-cairocffi picom nodejs npm gcc tmux
 }
 
 install_lazy_git () {
@@ -14,7 +14,7 @@ install_lazy_git () {
     rm -rf ./lazygit.tar.gz lazygit
 }
 
-#update_and_install_packages
+update_and_install_packages
 install_lazy_git
 
-#/bin/bash $SCRIPT_DIR/setup_env.sh
+/bin/bash $SCRIPT_DIR/setup_env.sh

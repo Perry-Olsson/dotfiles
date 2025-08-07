@@ -1,17 +1,22 @@
 #!/bin/bash
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+configure_git () {
+    git config --global user.email "olsson.perry@gmail.com"
+    git config --global user.name "Perry Olsson"
+}
+
 create_dirs_and_modify_path () {
     mkdir $HOME/.local/bin
     mkdir $HOME/Pictures/backgrounds
 }
 
 install_neovim () {
-    wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+    wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
     rm -rf $HOME/.config/nvim
     mkdir $HOME/.config/nvim
     sudo rm -rf /opt/nvim
-    sudo tar -xzf nvim-linux64.tar.gz -C /opt 
+    sudo tar -xzf nvim-linux-x86_64.tar.gz -C /opt 
 }
 
 install_fonts () {
@@ -57,7 +62,9 @@ install_zsh () {
 }
 
 install_qtile () {
-    pip install qtile
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    uv tool install qtile
+    mkdir $HOME/.config/qtile
 }
 
 install_node () {
@@ -77,14 +84,15 @@ install_rust () {
     cargo install cargo-nextest
 }
 
-# create_dirs_and_modify_path
-# install_neovim
-# install_fonts
-# install_terminal_emulator
-# install_zsh
-# generate_ssh_key
-# clone_env_setup_repo
-# install_qtile
-# install_node
-# install_rust
-# copy_environment_config
+configure_git
+create_dirs_and_modify_path
+install_neovim
+install_fonts
+install_terminal_emulator
+install_zsh
+generate_ssh_key
+clone_env_setup_repo
+install_qtile
+install_node
+install_rust
+copy_environment_config
