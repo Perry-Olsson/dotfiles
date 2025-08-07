@@ -7,10 +7,24 @@ lsp_config.rust_analyzer.setup {
         ['rust-analyzer'] = {}
     }
 }
-lsp_config.tsserver.setup{}
-lsp_config.lua_ls.setup{}
-lsp_config.pyright.setup{}
-lsp_config.clangd.setup {}
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+lsp_config.tsserver.setup{
+    capabilities = capabilities
+}
+lsp_config.lua_ls.setup{
+    capabilities = capabilities
+}
+lsp_config.pyright.setup{
+    capabilities = capabilities
+}
+lsp_config.clangd.setup{
+    capabilities = capabilities
+}
+lsp_config.terraformls.setup{
+    capabilities = capabilities
+}
 
 vim.keymap.set('n', '<leader><S-e>', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>di', vim.diagnostic.goto_next)
@@ -25,7 +39,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local opts = { buffer = ev.buf }
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, opts)
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
         vim.keymap.set('n', '<leader><C-k>', vim.lsp.buf.signature_help, opts)
         vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
