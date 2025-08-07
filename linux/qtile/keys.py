@@ -7,11 +7,11 @@ from functions import shutdown
 def init_keys(groups: List[Group]):
     keys = [
                 # Switch between windows
-                Key("M-h", lazy.layout.left(), desc="Move focus to left"),
-                Key("M-l", lazy.layout.right(), desc="Move focus to right"),
-                Key("M-j", lazy.layout.down(), desc="Move focus down"),
-                Key("M-k", lazy.layout.up(), desc="Move focus up"),
-                Key("M-<space>", lazy.layout.next(),
+                Key("C-h", lazy.layout.left(), desc="Move focus to left"),
+                Key("C-l", lazy.layout.right(), desc="Move focus to right"),
+                Key("C-j", lazy.layout.down(), desc="Move focus down"),
+                Key("C-k", lazy.layout.up(), desc="Move focus up"),
+                Key("C-<space>", lazy.layout.next(),
                     desc="Move window focus to other window"),
 
                 # Move windows between left/right columns or move up/down in current stack.

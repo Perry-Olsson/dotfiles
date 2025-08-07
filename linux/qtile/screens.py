@@ -78,19 +78,6 @@ top_bar = bar.Bar(
                             linewidth=1,
                             padding=10
                         ),
-                        widget.CurrentLayoutIcon(
-                            background=theme["dark_gray_blue"],
-                            custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
-                            foreground=theme["very_dark_gray_blue"],
-                            padding=0,
-                            scale=0.65
-                        ),
-                        widget.Sep(
-                            background=theme["dark_gray_blue"],
-                            foreground=theme["very_dark_gray_blue"],
-                            linewidth=1,
-                            padding=10
-                        ),
                         widget.CurrentLayout(
                             background=theme["dark_gray_blue"],
                             font='Ubuntu Bold',

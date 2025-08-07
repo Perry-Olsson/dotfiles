@@ -1,5 +1,5 @@
 class Constants:
-    TERMINAL = "x-terminal-emulator"
+    TERMINAL = "kitty"
     THEME = {
             'bright_magenta': ["#cc34eb", "#cc34eb"],
             'cyan_blue': ["#00aeff", "#00aeff"],
