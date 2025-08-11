@@ -15,7 +15,11 @@ vim.keymap.set("n", "<leader>nt", ":help nvim-tree-setup<CR>", get_opts("Nvim tr
 vim.keymap.set("n", "<leader>h", ":noh<CR>", get_opts("No highlight"))
 vim.keymap.set("i", "jk", "<ESC>", opts)
 
-vim.cmd("nmap <leader>e  <cmd>NvimTreeToggle<CR> <cmd>vertical resize 35<CR>")
+local print_working_directory = function()
+    print(vim.api.nvim_buf_get_name(0))
+end
+-- print working directory
+vim.keymap.set("n", "<leader>pd", print_working_directory, get_opts("Prints the working directory of the current buffer"))
 
 vim.keymap.set("n", "<C-L>", "nohl<CR><C-L>", opts)
 vim.keymap.set("n", "<leader>wv", "<C-W>v", opts)

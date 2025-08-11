@@ -48,21 +48,17 @@ local function run_script()
     print(format)
 end
 
-local function change_root_to_current_buffer() 
+local function strip_file_handle(filePath)
+  return string.match(filePath, "(.*)/[^/]+$") or ""
+end
+
+local function change_root_to_current_buffer()
     local file_path = vim.api.nvim_buf_get_name(0)
     file_path = strip_file_handle(file_path)
     if file_path == "" then
         print("No directory found")
     end
     api.tree.change_root(file_path)
-end
-
--- The concise version is also updated for Unix-style paths
-function strip_file_handle(filePath)
-  -- Matches everything from the start up to the last slash,
-  -- but not including the slash itself.
-  -- If no match, it returns nil.
-  return string.match(filePath, "(.*)/[^/]+$") or ""
 end
 
 vim.keymap.set("n", "<leader>cr", change_root_to_current_buffer, opts("change root to current buffer"))
@@ -76,6 +72,16 @@ local function my_on_attach(bufnr)
     vim.keymap.set("n", "<leader><S-r>", run_script, opts("Run shell script"))
     vim.keymap.set("n", "<leader>]", change_root_and_working_directory, opts("Change root and working directory"))
 end
+
+local nvim_tree_width = 45
+
+vim.cmd("nmap <leader>e  <cmd>NvimTreeToggle<CR> <cmd>vertical resize "..nvim_tree_width.."<CR>")
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        vim.cmd("NvimTreeToggle<CR>")
+        vim.cmd("vertical resize"..nvim_tree_width.."<CR>")
+    end
+})
 
   -- pass to setup along with your other options
 require("nvim-tree").setup {
