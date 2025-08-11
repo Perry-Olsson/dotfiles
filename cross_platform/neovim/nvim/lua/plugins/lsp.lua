@@ -10,7 +10,7 @@ lsp_config.rust_analyzer.setup {
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lsp_config.tsserver.setup{
+lsp_config.ts_ls.setup{
     capabilities = capabilities
 }
 lsp_config.lua_ls.setup{
@@ -27,8 +27,8 @@ lsp_config.terraformls.setup{
 }
 
 vim.keymap.set('n', '<leader><S-e>', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>di', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>do', vim.diagnostic.goto_prev)
+vim.keymap.set('n', '<leader>di', function() vim.diagnostic.jump{count = 1, float = true} end)
+vim.keymap.set('n', '<leader>do', function() vim.diagnostic.jump{count = -1, float = true} end)
 vim.keymap.set('n', '<leader>dl', "<cmd>Telescope diagnostics<cr>")
 vim.keymap.set('n', '<leader><S-q>', vim.diagnostic.setloclist)
 

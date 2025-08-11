@@ -79,7 +79,7 @@ vim.cmd("nmap <leader>e  <cmd>NvimTreeToggle<CR> <cmd>vertical resize "..nvim_tr
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
         vim.cmd("NvimTreeToggle<CR>")
-        vim.cmd("vertical resize"..nvim_tree_width.."<CR>")
+        vim.cmd("vertical resize "..nvim_tree_width.."<CR>")
     end
 })
 
