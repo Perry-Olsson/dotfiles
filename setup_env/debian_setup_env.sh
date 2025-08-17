@@ -5,7 +5,7 @@ set -e
 
 update_and_install_packages () {
     sudo apt update
-    sudo apt install git gh libc6-dev zsh fastfetch dmenu xserver-xorg xinit libpangocairo-1.0-0 python3-pip python3-xcffib python3-cairocffi picom nodejs npm gcc tmux
+    sudo apt install git gh libc6-dev nitrogen ripgrep compton zsh fastfetch dmenu xserver-xorg xinit libpangocairo-1.0-0 python3-pip python3-xcffib python3-cairocffi picom nodejs npm gcc tmux
 }
 
 install_lazy_git () {

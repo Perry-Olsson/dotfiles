@@ -245,6 +245,10 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
+local function dmenu_run()
+    awful.spawn.with_shell("dmenu_run")
+end
+
 -- {{{ Key bindings
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
@@ -329,7 +333,7 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+    awful.key({ modkey },            "r",     dmenu_run,
               {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x",
@@ -580,3 +584,5 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+awful.spawn.with_shell("compton")
