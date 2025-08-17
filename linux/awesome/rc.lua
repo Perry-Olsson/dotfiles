@@ -13,7 +13,6 @@ require("modules.settings")
 require("awful.hotkeys_popup.keys")
 require("modules.errors").handle_startup()
 require("modules.layouts")
-require("modules.menu")
 require("modules.screens")
 beautiful.init("~/.config/awesome/modules/theme.lua")
 
@@ -52,7 +51,7 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey, "Shift"   }, "w", function () mymainmenu:show() end,
+    awful.key({ modkey, "Shift"   }, "c", function () mymainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation

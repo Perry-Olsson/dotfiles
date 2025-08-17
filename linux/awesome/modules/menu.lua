@@ -7,7 +7,7 @@ local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-local myawesomemenu = {
+myawesomemenu = {
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
@@ -18,7 +18,6 @@ local myawesomemenu = {
 local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
 local menu_terminal = { "open terminal", terminal }
 
-local mymainmenu
 if has_fdo then
     mymainmenu = freedesktop.menu.build({
         before = { menu_awesome },
@@ -34,8 +33,7 @@ else
     })
 end
 
-
-awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
-
 menubar.utils.terminal = terminal
+
+return awful.widget.launcher({ image = beautiful.awesome_icon,
+                                     menu = mymainmenu })

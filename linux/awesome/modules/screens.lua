@@ -2,6 +2,7 @@ local gears = require("gears")
 local awful = require("awful")
 local beautiful = require("beautiful")
 local wibox = require("wibox")
+mylauncher = require("modules.menu")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -64,6 +65,10 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
+
+praisewidget = wibox.widget.textbox()
+praisewidget.text = "You are great!"
+
 
 
 function create_screens(s)
