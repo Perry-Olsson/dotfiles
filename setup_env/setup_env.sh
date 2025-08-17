@@ -52,12 +52,13 @@ install_terminal_emulator () {
 
 install_zsh () {
     chsh -s $(which zsh)
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) > ./install_zsh.sh
+    chmod +x ./install_zsh.sh
+    ./install_zsh.sh
 }
 
 install_node () {
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-    nvm install 20
 }
 
 copy_environment_config () {
@@ -69,7 +70,6 @@ copy_environment_config () {
 
 install_rust () {
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    cargo install cargo-nextest
 }
 
 configure_git
