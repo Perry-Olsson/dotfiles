@@ -5,7 +5,7 @@ set -e
 
 update_and_install_packages () {
     sudo apt update
-    sudo apt install git gh pkg-config cmake libc6-dev feh ripgrep jq dunst lm-sensors xclip zsh fastfetch dmenu xserver-xorg xinit libpangocairo-1.0-0 python3-pip python3-xcffib python3-cairocffi picom nodejs npm gcc tmux
+    sudo apt install git gh curl pkg-config cmake libc6-dev feh ripgrep jq dunst lm-sensors xclip zsh fastfetch dmenu xserver-xorg xinit libpangocairo-1.0-0 python3-pip python3-xcffib python3-cairocffi picom nodejs npm gcc tmux
 }
 
 install_lazy_git () {
@@ -16,7 +16,14 @@ install_lazy_git () {
     rm -rf ./lazygit.tar.gz lazygit
 }
 
+install_spotify () {
+    curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+    echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+    sudo apt-get update && sudo apt-get install spotify-client
+}
+
 update_and_install_packages
 install_lazy_git
+install_spotify
 
 /bin/bash $SCRIPT_DIR/setup_env.sh
