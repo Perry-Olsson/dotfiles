@@ -1,3 +1,6 @@
+local client = client
+local awesome = awesome
+
 local settings = require("modules.settings")
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
@@ -18,6 +21,8 @@ local globalkeys = gears.table.join(
               {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
+    awful.key({ modkey,           }, "b", function() awful.spawn.with_shell(settings.default_apps.browser) end,
+        {description = "Launch browser", "launcher"}),
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -92,7 +97,7 @@ local globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function() awful.spawn.widh_shell("dmenu_run") end,
+    awful.key({ modkey },            "r",     function() awful.spawn.with_shell("dmenu_run") end,
               {description = "run dmenu", group = "launcher"}),
 
     awful.key({ modkey }, "x",
