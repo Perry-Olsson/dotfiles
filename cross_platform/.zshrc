@@ -109,7 +109,7 @@ if [ -e $HOME/.zsh_mixin ]
 then
   source $HOME/.zsh_mixin
 fi
-neofetch
+fastfetch
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

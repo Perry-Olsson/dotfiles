@@ -1,6 +1,8 @@
 #!/bin/bash
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+set -e
+
 configure_git () {
     git config --global user.email "olsson.perry@gmail.com"
     git config --global user.name "Perry Olsson"
@@ -9,6 +11,7 @@ configure_git () {
 create_dirs_and_modify_path () {
     mkdir $HOME/.local/bin
     mkdir $HOME/Pictures/backgrounds
+    mkdir $HOME/.config/awesome
 }
 
 install_neovim () {
@@ -44,27 +47,12 @@ clone_env_setup_repo () {
 }
 
 install_terminal_emulator () {
-    # Kitty term seems ot have perf issues running on virtual box
-    curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-    ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
-    # Place the kitty.desktop file somewhere it can be found by the OS
-    cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
-    # If you want to open text files and images in kitty via your file manager also add the kitty-open.desktop file
-    cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
-    # Update the paths to the kitty and its icon in the kitty.desktop file(s)
-    sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
-    sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+    #todo
 }
 
 install_zsh () {
     chsh -s $(which zsh)
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-}
-
-install_qtile () {
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    uv tool install qtile
-    mkdir $HOME/.config/qtile
 }
 
 install_node () {
@@ -92,7 +80,6 @@ install_terminal_emulator
 install_zsh
 generate_ssh_key
 clone_env_setup_repo
-install_qtile
 install_node
 install_rust
 copy_environment_config
