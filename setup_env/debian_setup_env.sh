@@ -5,7 +5,7 @@ set -e
 
 update_and_install_packages () {
     sudo apt update
-    sudo apt install git gh pkg-config libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev cmake libc6-dev feh ripgrep jq dunst lm-sensors xclip zsh fastfetch dmenu xserver-xorg xinit libpangocairo-1.0-0 python3-pip python3-xcffib python3-cairocffi picom nodejs npm gcc tmux
+    sudo apt install git gh pkg-config cmake libc6-dev feh ripgrep jq dunst lm-sensors xclip zsh fastfetch dmenu xserver-xorg xinit libpangocairo-1.0-0 python3-pip python3-xcffib python3-cairocffi picom nodejs npm gcc tmux
 }
 
 install_lazy_git () {
