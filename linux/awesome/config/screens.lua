@@ -65,14 +65,15 @@ local praisewidget = wibox.widget.textbox()
 praisewidget.text = "You are great!"
 
 
+local l = awful.layout.suit
+local tile = l.tile.left
 
 local function create_screens(s)
     -- Wallpaper
     set_wallpaper(s)
 
-    local l = awful.layout.suit
     local names = { "www", "dev", "test", "misc", "media", "main" }
-    local layouts = { l.max, l.tile, l.tile, l.tile, l.max, l.floating }
+    local layouts = { l.max, tile, tile, tile, l.max, l.floating }
     -- Each screen has its own tag table.
     awful.tag(names, s, layouts)
 
