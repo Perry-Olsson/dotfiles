@@ -20,8 +20,7 @@ alias python='python3'
 alias lg='lazygit'
 alias e='exit'
 alias vim='nvim'
-alias vo='nvim $(find ~/ -not -path "*\.*" -type d | fzf)'
-# alias vo="nvim $(fzf)"
+alias vo='nvim $(find ~/git ~/personal ~/development -not -path "*\.*" -type d -maxdepth 1 | fzf)'
 export EDITOR='nvim'
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
