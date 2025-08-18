@@ -61,9 +61,11 @@ local globalkeys = gears.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal.." -e tmux") end,
-              {description = "open a terminal", group = "launcher"}),
+              {description = "Open terminal with new tmux session", group = "launcher"}),
     awful.key({ modkey, "Control" }, "Return", function () awful.spawn(terminal.." -e tmux a") end,
-              {description = "open a terminal", group = "launcher"}),
+              {description = "Open terminal and attach to tmux session", group = "launcher"}),
+    awful.key({ modkey, "Mod1" }, "Return", function () awful.spawn(terminal) end,
+              {description = "Open terminal with no tmux session", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
