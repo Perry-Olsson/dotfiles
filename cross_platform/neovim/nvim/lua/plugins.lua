@@ -30,7 +30,7 @@ require("lazy").setup({
     "kyazdani42/nvim-tree.lua",
     "nvim-lua/plenary.nvim",
     {
-    'nvim-telescope/telescope.nvim', tag = '0.1.6',
+    'nvim-telescope/telescope.nvim', tag = '0.1.8',
     dependencies = { 'nvim-lua/plenary.nvim' }
     },
     "neovim/nvim-lspconfig",

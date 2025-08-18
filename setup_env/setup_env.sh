@@ -72,6 +72,10 @@ install_rust () {
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
+install_zoxide() {
+    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+}
+
 configure_git
 create_dirs_and_modify_path
 install_neovim
@@ -82,4 +86,5 @@ generate_ssh_key
 clone_env_setup_repo
 install_node
 install_rust
+install_zoxide
 copy_environment_config
