@@ -33,7 +33,7 @@ awful.layout.layouts = {
 menubar.utils.terminal = settings.default_apps.terminal
 
 -- THEME
-beautiful.init("~/.config/awesome/modules/theme.lua")
+beautiful.init("~/.config/awesome/gruvbox-theme/theme.lua")
 
 -- MOUSE BINDINGS
 root.buttons(gears.table.join(

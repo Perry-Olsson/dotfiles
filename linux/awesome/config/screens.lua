@@ -1,5 +1,5 @@
 local screen = screen
-local client = lient
+local client = client
 
 local gears = require("gears")
 local awful = require("awful")
