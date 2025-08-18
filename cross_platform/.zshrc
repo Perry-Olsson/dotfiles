@@ -13,7 +13,8 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
-export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
+
+alias ls='ls --color'
 alias penv='source ./env/bin/activate'
 alias python='python3'
 alias lg='lazygit'
@@ -68,7 +69,10 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-alias ls='ls --color'
+if [ -e $HOME/.zsh_mixin ]
+then
+  source $HOME/.zsh_mixin
+fi
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
