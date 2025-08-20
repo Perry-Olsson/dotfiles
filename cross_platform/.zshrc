@@ -21,6 +21,7 @@ alias lg='lazygit'
 alias e='exit'
 alias vim='nvim'
 alias vo='nvim $(find ~/git ~/personal ~/development -not -path "*\.*" -type d -maxdepth 1 | fzf)'
+alias cdp='cd $(find ~/git ~/personal ~/development -not -path "*\.*" -type d -maxdepth 1 | fzf)'
 export EDITOR='nvim'
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
