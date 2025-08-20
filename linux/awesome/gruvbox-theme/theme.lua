@@ -69,11 +69,11 @@ theme.fg_focus      = theme.colors.grey
 theme.fg_urgent     = theme.colors.black
 theme.fg_minimize   = theme.colors.darkGrey
 
-theme.useless_gap               = dpi(0)
+theme.useless_gap               = dpi(3)
 theme.gap_single_client         = true
 theme.maximized_honor_padding   = false
 
-theme.border_width  = dpi(2)
+theme.border_width  = dpi(5)
 theme.border_normal = theme.colors.black
 theme.border_focus  = theme.colors.black
 theme.border_marked = theme.colors.red
