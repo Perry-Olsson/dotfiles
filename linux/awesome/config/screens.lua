@@ -78,7 +78,7 @@ local function create_screens(s)
     awful.tag(names, s, layouts)
 
     -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
+    --[[ s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
@@ -102,7 +102,7 @@ local function create_screens(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 30 })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -121,7 +121,7 @@ local function create_screens(s)
             mytextclock,
             s.mylayoutbox,
         },
-    }
+    } ]]
 end
 
 awful.screen.connect_for_each_screen(create_screens)

@@ -10,4 +10,5 @@ require("config.screens")
 require("config.misc")
 require("config.client")
 awful.spawn.with_shell("picom")
+awful.spawn.with_shell("~/.config/polybar/launch.sh")
 

@@ -13,3 +13,5 @@ cp -a $HOME/.config/awesome/* $script_dir/awesome
 
 # copy zsh mixin
 cp $HOME/.zsh_mixin $script_dir/
+
+cp -a $HOME/.config/polybar/* $script_dir/polybar
