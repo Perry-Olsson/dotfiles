@@ -7,7 +7,6 @@ local awful = require("awful")
 local menu = require("modules.menu")
 local gears = require("gears")
 local keys = require("modules.keys")
-local rules = require("modules.rules")
 
 -- LAYOUTS
 awful.layout.layouts = {
@@ -34,6 +33,7 @@ menubar.utils.terminal = settings.default_apps.terminal
 
 -- THEME
 beautiful.init("~/.config/awesome/gruvbox-theme/theme.lua")
+local rules = require("modules.rules")
 
 -- MOUSE BINDINGS
 root.buttons(gears.table.join(
@@ -45,5 +45,5 @@ root.buttons(gears.table.join(
 -- KEYS
 root.keys(keys.global_keys)
 
--- RULES
 awful.rules.rules = rules
+

@@ -78,7 +78,7 @@ local function create_screens(s)
     awful.tag(names, s, layouts)
 
     -- Create a promptbox for each screen
-    --[[ s.mypromptbox = awful.widget.prompt()
+    s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
@@ -98,7 +98,13 @@ local function create_screens(s)
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
+        buttons = tasklist_buttons,
+        style = {
+            shape_border_width = 1,
+            shape_border_color = '#777777',
+            shape  = gears.shape.rounded_bar,
+
+        },
     }
 
     -- Create the wibox
@@ -116,12 +122,8 @@ local function create_screens(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
-            mytextclock,
-            s.mylayoutbox,
         },
-    } ]]
+    }
 end
 
 awful.screen.connect_for_each_screen(create_screens)

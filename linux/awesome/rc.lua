@@ -3,6 +3,7 @@
 pcall(require, "luarocks.loader")
 
 local awful = require("awful")
+require("util.log")
 require("awful.autofocus")
 require("awful.hotkeys_popup.keys")
 require("modules.errors").handle_startup()
@@ -10,5 +11,5 @@ require("config.screens")
 require("config.misc")
 require("config.client")
 awful.spawn.with_shell("picom")
-awful.spawn.with_shell("~/.config/polybar/launch.sh")
+-- awful.spawn.with_shell("~/.config/polybar/launch.sh")
 

@@ -5,7 +5,9 @@ local keys = require("modules.keys")
 return {
     -- All clients will match this rule.
     { rule = { },
-      properties = { border_width = beautiful.border_width,
+      except_any = { class = "polybar" },
+      properties = { 
+                     border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      raise = true,
@@ -15,7 +17,6 @@ return {
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
-
     -- Floating clients.
     { rule_any = {
         instance = {

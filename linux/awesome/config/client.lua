@@ -9,6 +9,7 @@ local beautiful = require("beautiful")
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
+    LOG(tostring(getmetatable(c)))
     c.shape = gears.shape.rounded_rect
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
@@ -44,10 +45,10 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.fixed.horizontal
         },
         { -- Middle
-            buttons = buttons,
             layout  = wibox.layout.flex.horizontal
         },
         { -- Right
+            buttons = buttons,
             layout = wibox.layout.fixed.horizontal()
         },
         layout = wibox.layout.align.horizontal

@@ -45,7 +45,7 @@ theme.colors = {
     yellow          = "#d79921",
     blue            = "#458588",
     purple          = "#b16286",
-    aqua            = "#689d6a",
+    aqua            = "#4ebfb4",
     orange          = "#d65d0e",
 
     lightRed        = "#fb4934",
@@ -73,9 +73,9 @@ theme.useless_gap               = dpi(3)
 theme.gap_single_client         = true
 theme.maximized_honor_padding   = false
 
-theme.border_width  = dpi(5)
+theme.border_width  = dpi(2)
 theme.border_normal = theme.colors.black
-theme.border_focus  = theme.colors.black
+theme.border_focus  = theme.colors.aqua
 theme.border_marked = theme.colors.red
 
 -- PROMPT --
