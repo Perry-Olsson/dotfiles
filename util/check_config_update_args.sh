@@ -1,22 +1,25 @@
 #!/bin/bash
 
+script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+source $script_dir/helpers.sh
+
 config_arg=$1
 valid_arg=0
-search_dir=./util/copy
+search_dir=./util/copy_config
 
 list_options() {
     echo "Available options: "
-    for entry in "$search_dir"/*
+    for option in $(get_config_options);
     do
-        echo "$entry" | sed -r 's/.*\/(.*)\.sh$/\1/g'
+        echo $option
     done
 }
 
 check_arg() {
-    for entry in "$search_dir"/*
+    for entry in $(get_config_options);
     do
-        arg=$(echo "$entry" | sed -r 's/.*\/(.*)\.sh$/\1/g')
-        if [[ $arg == $config_arg ]]; then
+        if [[ $entry == $config_arg ]]; then
             valid_arg=1
             break
         fi

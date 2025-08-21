@@ -7,6 +7,8 @@ arg=$1
 from_dir=""
 to_dir=""
 
+# If arg is pull, copy config from system in to dotfiles repo
+# if not copy from dotfiles to system
 if [[ $arg == "pull" ]]; then
     from_dir=$HOME/.config/nvim
     to_dir=$script_dir/../../config/nvim
@@ -15,5 +17,6 @@ else
     to_dir=$HOME/.config/nvim
 fi
 
-echo "from dir: $from_dir"
-echo "to dir: $to_dir"
+cp $from_dir/init.vim $to_dir/
+cp -r $from_dir/lua $to_dir/
+echo "Copied neovim configuration files"
