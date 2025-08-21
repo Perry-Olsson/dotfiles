@@ -43,7 +43,7 @@ clone_env_setup_repo () {
     if [ "$SKIP_GH_AUTH" != "true" ]; then
       gh auth login
     fi
-    git clone git@github.com:Perry-Olsson/environment-setups.git
+    git clone git@github.com:Perry-Olsson/dotfiles.git
 }
 
 install_terminal_emulator () {
