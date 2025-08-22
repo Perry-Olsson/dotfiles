@@ -8,18 +8,23 @@ vim.keymap.set("n", "<leader>=", dap.terminate, { desc="Debug terminate" })
 vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc="Debug toggle breakpoint" })
 vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc="Debug open repl" })
 -- **********************C++/C/RUST**************************
-dap.adapters.cppdbg = {
-  id = 'cppdbg',
-  type = 'executable',
-  command = os.getenv("HOME")..'/.local/share/nvim/mason/bin/OpenDebugAD7',
+dap.adapters.lldb = {
+    type = 'executable',
+    command = os.getenv("HOME")..'/.local/share/nvim/mason/bin/codelldb',
+    name = 'lldb'
 }
 dap.configurations.cpp = {
   {
     name = "Launch file",
-    type = "cppdbg",
+    type = "lldb",
     request = "launch",
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        local path = os.getenv("LLDB_EXECUTABLE_PATH")
+        if path then
+            return path
+        else
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end
     end,
     cwd = '${workspaceFolder}',
     stopAtEntry = true,
