@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# PUSH CONFIG FROM DOTFILE TO SYSTEM
+
 set -e
 
 config_arg=$1
