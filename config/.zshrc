@@ -12,7 +12,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 source "${ZINIT_HOME}/zinit.zsh"
 
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.tmuxifier/bin:$PATH"
 
 alias ls='ls --color'
 alias penv='source ./env/bin/activate'
@@ -22,6 +22,7 @@ alias e='exit'
 alias vim='nvim'
 alias vo='nvim $(find ~/git ~/personal ~/development -maxdepth 1 -not -path "*\.*" -type d | fzf)'
 alias c='cd $(find ~/git ~/personal ~/development -maxdepth 1 -not -path "*\.*" -type d | fzf)'
+alias tl='tmuxifier load-session'
 export EDITOR='nvim'
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
