@@ -37,15 +37,17 @@ local function change_root_and_working_directory()
 end
 
 local function run_script()
-    local abs_path = api.tree.get_node_under_cursor()["absolute_path"]
-    local handle = io.popen(abs_path)
-    if handle == nil then
-        return
-    end
-    local output = handle:read("*a")
-    handle:close()
-    local format = output:gsub("[\n\r]", " ")
-    print(format)
+    vim.ui.input({ prompt = "Enter script args: " }, function(input)
+        local abs_path = api.tree.get_node_under_cursor()["absolute_path"]
+        local handle = io.popen(abs_path.." "..input)
+        if handle == nil then
+            return
+        end
+        local output = handle:read("*a")
+        handle:close()
+        local format = output:gsub("[\n\r]", " ")
+        print(format)
+    end)
 end
 
 local function strip_file_handle(filePath)
