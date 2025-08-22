@@ -72,8 +72,16 @@ install_rust () {
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
-install_zoxide() {
+install_zoxide () {
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+}
+
+tmux_tpm () {
+    git clone https://github.com/tmux-plugins/tmp ~/.tmux/plugins/tpm
+}
+
+tmuxifier () {
+    git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
 }
 
 configure_git
