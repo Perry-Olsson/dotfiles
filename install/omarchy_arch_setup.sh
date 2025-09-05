@@ -7,6 +7,8 @@ update_and_install_packages () {
     sudo pacman -S --noconfirm zsh tmux
 }
 
-if [ "$1" = "run" ]; then
-    update_and_install_packages
-fi
+update_and_install_packages
+$SCRIPT_DIR/scripts/generate_ssh_key.sh
+$SCRIPT_DIR/scripts/clone_dotfiles.sh
+$SCRIPT_DIR/scripts/install_tpm.sh
+$SCRIPT_DIR/scripts/install_tmuxifier.sh

@@ -8,22 +8,19 @@ update_and_install_packages () {
     sudo apt install git gh curl fzf polybar pkg-config cmake libc6-dev feh ripgrep jq dunst lm-sensors xclip zsh fastfetch dmenu xserver-xorg xinit libpangocairo-1.0-0 python3-pip python3-xcffib python3-cairocffi picom nodejs npm gcc tmux
 }
 
-install_lazy_git () {
-    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-    tar xf lazygit.tar.gz lazygit
-    sudo install lazygit /usr/local/bin
-    rm -rf ./lazygit.tar.gz lazygit
-}
-
-install_spotify () {
-    curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-    echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-    sudo apt-get update && sudo apt-get install spotify-client
-}
-
 update_and_install_packages
-install_lazy_git
-install_spotify
+$SCRIPT_DIR/scripts/install_lazy_git.sh
+$SCRIPT_DIR/scripts/install_spotify.sh
+$SCRIPT_DIR/scripts/configure_git.sh
+$SCRIPT_DIR/scripts/create_dirs_and_modify_path.sh
+$SCRIPT_DIR/scripts/install_neovim.sh
+$SCRIPT_DIR/scripts/install_fonts.sh
+$SCRIPT_DIR/scripts/generate_ssh_key.sh
+$SCRIPT_DIR/scripts/clone_dotfiles.sh
+$SCRIPT_DIR/scripts/install_nvm.sh
+$SCRIPT_DIR/scripts/install_rust.sh
+$SCRIPT_DIR/scripts/install_zoxide.sh
+$SCRIPT_DIR/scripts/install_tpm.sh
+$SCRIPT_DIR/scripts/install_tmuxifier.sh
 
-/bin/bash $SCRIPT_DIR/setup_env.sh
+# copy environment config
