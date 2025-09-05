@@ -1,0 +1,1 @@
+/home/perry/.config/omarchy/current/theme/neovim.lua
