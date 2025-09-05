@@ -138,4 +138,12 @@ require("lazy").setup({
 	},
 	{ "folke/neodev.nvim", opts = {} },
 })
-vim.cmd("colorscheme " .. theme[2]["opts"]["colorscheme"])
+local colorscheme
+if #theme > 1 then
+    colorscheme = theme[2]
+else
+    colorscheme = theme[1]
+end
+if colorscheme["opts"] ~= nil then
+    vim.cmd("colorscheme " .. colorscheme["opts"]["colorscheme"])
+end
