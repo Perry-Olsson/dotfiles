@@ -33,4 +33,3 @@ if has('filetype')
   filetype indent plugin on
 endif
 ]])
-vim.cmd("colorscheme kanagawa")
