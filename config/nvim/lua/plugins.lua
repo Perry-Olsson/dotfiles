@@ -19,7 +19,6 @@ vim.g.mapleader = " "
 require("lazy").setup({
     "mfussenegger/nvim-jdtls",
     "williamboman/mason.nvim",
-    { "folke/tokyonight.nvim", branch = "main" },
     {
         "gthelding/monokai-pro.nvim",
         config = function()
@@ -61,8 +60,6 @@ require("lazy").setup({
             { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
         },
     },
-    "rebelot/kanagawa.nvim",
-    "EdenEast/nightfox.nvim",
     "b3nj5m1n/kommentary",
     "mfussenegger/nvim-dap",
     "rcarriga/nvim-dap-ui",
