@@ -46,17 +46,6 @@ clone_env_setup_repo () {
     git clone git@github.com:Perry-Olsson/dotfiles.git
 }
 
-install_terminal_emulator () {
-    #todo
-}
-
-install_zsh () {
-    chsh -s $(which zsh)
-    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) > ./install_zsh.sh
-    chmod +x ./install_zsh.sh
-    ./install_zsh.sh
-}
-
 install_node () {
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 }
@@ -84,15 +73,16 @@ tmuxifier () {
     git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
 }
 
-configure_git
-create_dirs_and_modify_path
-install_neovim
-install_fonts
-install_terminal_emulator
-install_zsh
-generate_ssh_key
-clone_env_setup_repo
-install_node
-install_rust
-install_zoxide
-copy_environment_config
+if [ "$1" = "run" ]; then
+    configure_git
+    create_dirs_and_modify_path
+    install_neovim
+    install_fonts
+    generate_ssh_key
+    clone_env_setup_repo
+    install_node
+    install_rust
+    install_zoxide
+    copy_environment_config
+fi
+
