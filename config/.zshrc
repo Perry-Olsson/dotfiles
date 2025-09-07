@@ -15,6 +15,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.tmuxifier/bin:$PATH"
 
 alias ls='eza -lh --group-directories-first --icons=auto'
+alias cd='z'
 alias penv='source ./env/bin/activate'
 alias python='python3'
 alias lg='lazygit'
