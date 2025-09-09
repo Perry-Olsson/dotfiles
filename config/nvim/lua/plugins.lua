@@ -17,33 +17,23 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 local theme = require("plugins.theme")
+local plugin
+if theme[1][1] == "LazyVim/LazyVim" then
+    plugin = {}
+else
+    plugin = theme[1]
+end
 require("lazy").setup({
 	"mfussenegger/nvim-jdtls",
 	"williamboman/mason.nvim",
-	theme[1],
-	-- {
-	-- 	"gthelding/monokai-pro.nvim",
-	-- 	config = function()
-	-- 		require("monokai-pro").setup({
-	-- 			filter = "ristretto",
-	-- 			override = function()
-	-- 				return {
-	-- 					NonText = { fg = "#948a8b" },
-	-- 					MiniIconsGrey = { fg = "#948a8b" },
-	-- 					MiniIconsRed = { fg = "#fd6883" },
-	-- 					MiniIconsBlue = { fg = "#85dacc" },
-	-- 					MiniIconsGreen = { fg = "#adda78" },
-	-- 					MiniIconsYellow = { fg = "#f9cc6c" },
-	-- 					MiniIconsOrange = { fg = "#f38d70" },
-	-- 					MiniIconsPurple = { fg = "#a8a9eb" },
-	-- 					MiniIconsAzure = { fg = "#a8a9eb" },
-	-- 					MiniIconsCyan = { fg = "#85dacc" }, -- same value as MiniIconsBlue for consistency
-	-- 				}
-	-- 			end,
-	-- 		})
-	-- 		vim.cmd([[colorscheme monokai-pro]])
-	-- 	end,
-	-- },
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
+    plugin,
 	{
 		"christoomey/vim-tmux-navigator",
 		cmd = {

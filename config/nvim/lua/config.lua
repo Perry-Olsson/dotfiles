@@ -16,7 +16,7 @@ require("plugins.telescope")
 require("vim_settings")
 -- transparent background
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
 vim.api.nvim_set_hl(0, "Terminal", { bg = "none" })
@@ -59,4 +59,3 @@ vim.api.nvim_set_hl(0, "NotifyERRORBorder", { bg = "none" })
 vim.api.nvim_set_hl(0, "NotifyWARNBorder", { bg = "none" })
 vim.api.nvim_set_hl(0, "NotifyTRACEBorder", { bg = "none" })
 vim.api.nvim_set_hl(0, "NotifyDEBUGBorder", { bg = "none" })
-

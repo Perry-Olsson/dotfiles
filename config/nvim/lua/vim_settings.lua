@@ -21,6 +21,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
+vim.opt.fillchars:append { eob = " " }
 vim.cmd("set notimeout ttimeout ttimeoutlen=200")
 vim.cmd("set t_vb=")
 vim.cmd([[
