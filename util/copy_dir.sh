@@ -12,9 +12,9 @@ to_dir=""
 # if not copy from dotfiles to system
 if [[ $arg == "pull" ]]; then
     from_dir=$HOME/.config/$directory_name
-    to_dir=$script_dir/../../config
+    to_dir=$script_dir/../config
 else
-    from_dir=$script_dir/../../config/$directory_name
+    from_dir=$script_dir/../config/$directory_name
     to_dir=$HOME/.config
 fi
 
