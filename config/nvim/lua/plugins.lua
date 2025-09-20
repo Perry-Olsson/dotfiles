@@ -20,6 +20,8 @@ local theme = require("plugins.theme")
 local plugin
 if theme[1][1] == "LazyVim/LazyVim" then
     plugin = {}
+elseif #theme == 1 then
+    plugin = theme
 else
     plugin = theme[1]
 end
