@@ -16,7 +16,8 @@ export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.tmuxifier/bin:$HOME/.local
 
 alias ls='eza -lh --group-directories-first --icons=auto'
 alias cd='z'
-alias penv='source ./env/bin/activate'
+alias penv='source .venv/bin/activate'
+alias pgenv='source ~/.virtualenvs/global/bin/activate'
 alias python='python3'
 alias lg='lazygit'
 alias e='exit'
@@ -78,6 +79,15 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
+export function fj() {
+    echo $(paste_from_clipboard) | sed 's/\\"/"/g' | jq .
+}
+
+export function fjc() {
+    fj | copy_to_clipboard 
+}
+
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+eval "$(mise activate zsh)"
