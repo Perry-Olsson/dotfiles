@@ -52,6 +52,7 @@ vim.keymap.set('n', '<leader>do', function() vim.diagnostic.jump{count = -1, flo
 vim.keymap.set('n', '<leader>dl', "<cmd>Telescope diagnostics<cr>")
 vim.keymap.set('n', '<leader><S-q>', vim.diagnostic.setloclist)
 
+vim.env.JAVA_HOME = '/Users/perryolsson/.local/share/mise/installs/java/21.0.2'
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
