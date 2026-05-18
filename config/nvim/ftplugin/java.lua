@@ -6,6 +6,7 @@ local launcher = vim.fn.glob(mason_jdtls .. '/plugins/org.eclipse.equinox.launch
 -- Per-project workspace cache
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = vim.fn.stdpath('data') .. '/jdtls-workspaces/' .. project_name
+local lombok_path = vim.fn.glob(mason_jdtls .. '/lombok.jar')
 
 local config = {
     cmd = {
@@ -19,6 +20,7 @@ local config = {
         '--add-modules=ALL-SYSTEM',
         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+        '-javaagent:' .. lombok_path,
         '-jar', launcher,
         '-configuration', mason_jdtls .. '/config_mac',
         '-data', workspace_dir,
