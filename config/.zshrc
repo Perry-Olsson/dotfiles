@@ -12,7 +12,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 source "${ZINIT_HOME}/zinit.zsh"
 
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.tmuxifier/bin:$HOME/.local/share/coursier/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.tmuxifier/bin:$PATH"
 
 alias ls='eza -lh --group-directories-first --icons=auto'
 alias cd='z'
@@ -85,6 +85,38 @@ export function fj() {
 
 export function fjc() {
     fj | copy_to_clipboard 
+}
+
+export function sch() {
+    rg --json -C 2 $@ | delta
+}
+
+export function prs() {
+    PR=$(gh pr list  | fzf | awk '{print $1}')
+    if [ -z "$PR" ]; then
+        return
+    fi
+    gh pr checkout "$PR"
+    export PR_BASE_BRANCH=$(gh pr view --json baseRefName --jq '.baseRefName')
+    git fetch origin "${PR_BASE_BRANCH}"
+}
+
+export function prstat() {
+    git diff "${PR_BASE_BRANCH}"... --stat
+}
+
+export function prd() {
+    diff "${PR_BASE_BRANCH}"...
+}
+
+export function diff() {
+    while true; do
+        file=$(git diff $@ --stat=200 | fzf | awk '{print $1}')
+        [ -z "$file" ] && break
+        git diff $@ -- "$file" | delta --paging=always
+        read -r -s -k 1 key < /dev/tty
+        [ "$key" = "e" ] && nvim "$file"
+    done
 }
 
 eval "$(fzf --zsh)"
