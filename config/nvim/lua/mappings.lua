@@ -29,8 +29,8 @@ vim.keymap.set("n", "<leader>wd", ":lcd %:p:h<CR>", opts)
 -- split resizing
 vim.keymap.set("n", "<A-=>", ":res +5<CR>", opts)
 vim.keymap.set("n", "<A-->", ":res -5<CR>", opts)
-vim.keymap.set("n", "+", ":vertical res +15<CR>", opts)
-vim.keymap.set("n", "_", ":vertical res -15<CR>", opts)
+vim.keymap.set("n", "<S-h>", ":vertical res +15<CR>", opts)
+vim.keymap.set("n", "<S-l>", ":vertical res -15<CR>", opts)
 
 -- split movements
 vim.keymap.set("n", "<C-h>", ":TmuxNavigateLeft<CR>")
