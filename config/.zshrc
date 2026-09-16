@@ -114,7 +114,7 @@ export function diff() {
     in_editor="false"
     while true; do
         if [ $in_editor = "false" ]; then
-            file=$(git diff $@ --stat=200 | fzf | awk '{print $1}')
+            file=$(git diff $@ --stat=200 --color=always | fzf --ansi | awk '{print $1}')
         fi
         in_editor="false"
         [ -z "$file" ] && break
@@ -132,4 +132,3 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
-export PATH="$HOME/.honbu/bin:$PATH"
