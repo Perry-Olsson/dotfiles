@@ -31,9 +31,12 @@ prefix = "ctrl+space"
 # --- Config reload (tmux: bind q source-file) ---
 reload_config = "prefix+q"
 
-# --- Pane splits (tmux: bind v split -h, bind e split -v) ---
-split_horizontal = "prefix+v"   # tmux "v" = vertical divider = horizontal split in herdr terms
-split_vertical = "prefix+e"     # tmux "e" = horizontal divider = vertical split in herdr terms
+# --- Pane splits (tmux: bind v split -h = side-by-side, bind e split -v = stacked) ---
+# NOTE: herdr names splits by the DIVIDER orientation (opposite of tmux's -h/-v):
+#   split_vertical   = vertical divider   = panes SIDE-BY-SIDE (tmux -h)
+#   split_horizontal = horizontal divider = panes STACKED      (tmux -v)
+split_vertical = "prefix+v"     # tmux: bind v split-window -h (side-by-side)
+split_horizontal = "prefix+e"   # tmux: bind e split-window -v (stacked)
 close_pane = "prefix+x"         # tmux: bind x kill-pane
 
 # --- Pane resize (tmux: bind -n M-h/j/k/l resize-pane) ---
@@ -58,15 +61,22 @@ close_tab = "prefix+shift+x"
 new_workspace = "prefix+shift+c"    # tmux: bind C new-session
 rename_workspace = "prefix+shift+r" # tmux: bind R rename-session
 close_workspace = "prefix+shift+k"  # tmux: bind K kill-session
-workspace_picker = "prefix+w"
+workspace_picker = "prefix+s"       # tmux: prefix+s session chooser (herdr settings moved to prefix+shift+s)
 previous_workspace = "prefix+shift+p"  # tmux: bind P switch-client -p
 next_workspace = "prefix+shift+n"      # tmux: bind N switch-client -n
 
 # --- Misc ---
+settings = "prefix+shift+s"          # moved off prefix+s (now workspace picker)
 zoom = "prefix+z"
 toggle_sidebar = "prefix+b"
-edit_scrollback = "prefix+shift+e"   # herdr's copy/scrollback (prefix+e is split_vertical)
+edit_scrollback = "prefix+shift+e"   # herdr's copy/scrollback (prefix+e is split_horizontal)
 
+# --- Navigate-mode movement (inside the workspace picker / navigate mode) ---
+# j/k move down/up in the workspace list. Arrow keys still work (permanent aliases).
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+
+detach = "prefix+d"
 # --- Seamless Vim/Neovim <-> herdr pane navigation ---
 # (tmux: christoomey/vim-tmux-navigator using C-h/j/k/l)
 # Bound below via the vim-herdr-navigation plugin actions so the same chord
@@ -101,6 +111,13 @@ command = "vim-herdr-navigation.right"
 description = "navigate right (vim/herdr)"
 
 # ---------------------------------------------------------------------------
+# UI
+# ---------------------------------------------------------------------------
+[ui]
+# Close the gap between split panes (they share divider borders).
+pane_gaps = false
+
+# ---------------------------------------------------------------------------
 # Notifications
 # ---------------------------------------------------------------------------
 [ui.toast]
@@ -125,3 +142,7 @@ delivery = "herdr"
 # depend on your terminal/tmux. If M-h/j/k/l resize or alt+shift+arrow tab moves
 # don't register, switch them to prefix-based binds.
 # ===========================================================================
+
+[theme]
+name = "catppuccin"
+auto_switch = false
