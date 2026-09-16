@@ -3,10 +3,38 @@ local jdtls = require('jdtls')
 local mason_jdtls = vim.fn.stdpath('data') .. '/mason/packages/jdtls'
 local launcher = vim.fn.glob(mason_jdtls .. '/plugins/org.eclipse.equinox.launcher_*.jar')
 
--- Per-project workspace cache
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-local workspace_dir = vim.fn.stdpath('data') .. '/jdtls-workspaces/' .. project_name
 local lombok_path = vim.fn.glob(mason_jdtls .. '/lombok.jar')
+
+-- Find the reactor root: walk up from the current file to the TOPMOST pom.xml
+-- so multi-module Maven projects are imported as a whole (inter-module
+-- dependency resolution requires the aggregator/parent pom as the root).
+local function find_maven_root(source)
+    source = source or vim.api.nvim_buf_get_name(0)
+    local dir = vim.fn.fnamemodify(source, ':p:h')
+    local maven_root = nil
+    while dir and dir ~= '/' do
+        if vim.uv.fs_stat(dir .. '/pom.xml') then
+            maven_root = dir -- keep going: remember the highest pom.xml seen
+        end
+        local parent = vim.fn.fnamemodify(dir, ':h')
+        if parent == dir then
+            break
+        end
+        dir = parent
+    end
+    return maven_root
+end
+
+-- Prefer the Maven reactor root; fall back to the standard jdtls markers
+-- (Gradle, git, wrappers) for non-Maven projects.
+local root_dir = find_maven_root()
+    or jdtls.setup.find_root({ 'gradlew', 'build.gradle', 'mvnw', '.git' })
+    or vim.fn.getcwd()
+
+-- Per-project workspace cache keyed off the RESOLVED root so every module in a
+-- multi-module build shares one consistent workspace.
+local project_name = vim.fn.fnamemodify(root_dir, ':p:h:t')
+local workspace_dir = vim.fn.stdpath('data') .. '/jdtls-workspaces/' .. project_name
 
 local config = {
     cmd = {
@@ -25,7 +53,7 @@ local config = {
         '-configuration', mason_jdtls .. '/config_mac',
         '-data', workspace_dir,
     },
-    root_dir = jdtls.setup.find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }),
+    root_dir = root_dir,
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
     settings = {
         java = {
