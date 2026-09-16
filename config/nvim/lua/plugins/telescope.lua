@@ -20,3 +20,13 @@ end, { desc = "Live Grep (including hidden)" })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set("n", "<leader>fd", "<cmd>Telescope find_files hidden=true<cr>", get_opts("Find files (include hidden)"))
+require('telescope').setup{
+    defaults = {
+        layout_strategy = 'horizontal',
+        layout_config = {
+            width = 0.99,
+            height = 0.80,
+            preview_width = 0.45,
+        },
+    }
+}
