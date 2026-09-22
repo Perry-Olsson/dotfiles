@@ -27,6 +27,45 @@ if not theme_ok then
     }
 end
 
+local has_herdr_navigation = vim.uv.fs_stat("~/src/vim-herdr-navigation/editor/nvim.lua")
+
+local vim_tmux_navigator = {
+    "christoomey/vim-tmux-navigator",
+    lazy = !has_herdr_navigation,
+    -- Disable the plugin's own <C-h/j/k/l> mappings; vim-herdr-navigation
+    -- owns them and falls back to :TmuxNavigate* when $TMUX is set, so tmux
+    -- keeps working while herdr panes get seamless navigation too.
+    init = function()
+        if has_herdr_navigation then
+            vim.g.tmux_navigator_no_mappings = 1
+        end
+    end,
+    cmd = {
+        "TmuxNavigateLeft",
+        "TmuxNavigateDown",
+        "TmuxNavigateUp",
+        "TmuxNavigateRight",
+        "TmuxNavigatePrevious",
+        "TmuxNavigatorProcessList",
+    }
+}
+
+if has_herdr_navigation then
+    vim_tmux_navigator["config"] = function()
+        -- Single source of truth for <C-h/j/k/l> navigation (herdr + tmux fallback).
+        dofile(vim.fn.expand("~/src/vim-herdr-navigation/editor/nvim.lua"))
+    end
+else
+    vim_tmux_navigator["keys"] = {
+        { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+        { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+        { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+        { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+        { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    }
+end
+
+
 local plugins = {
 	"mfussenegger/nvim-dap",
     { 
@@ -43,28 +82,7 @@ local plugins = {
         priority = 1000,
         opts = {},
     },
-	{
-		"christoomey/vim-tmux-navigator",
-		lazy = false,
-		-- Disable the plugin's own <C-h/j/k/l> mappings; vim-herdr-navigation
-		-- owns them and falls back to :TmuxNavigate* when $TMUX is set, so tmux
-		-- keeps working while herdr panes get seamless navigation too.
-		init = function()
-			vim.g.tmux_navigator_no_mappings = 1
-		end,
-		cmd = {
-			"TmuxNavigateLeft",
-			"TmuxNavigateDown",
-			"TmuxNavigateUp",
-			"TmuxNavigateRight",
-			"TmuxNavigatePrevious",
-			"TmuxNavigatorProcessList",
-		},
-		config = function()
-			-- Single source of truth for <C-h/j/k/l> navigation (herdr + tmux fallback).
-			dofile(vim.fn.expand("~/src/vim-herdr-navigation/editor/nvim.lua"))
-		end,
-	},
+    vim_tmux_navigator,
 	"b3nj5m1n/kommentary",
 	"rcarriga/nvim-dap-ui",
 	"kyazdani42/nvim-web-devicons",
