@@ -17,8 +17,14 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 local theme_ok, theme = pcall(require, "plugins.theme")
 if not theme_ok then
-	-- Fallback to tokyonight if the theme symlink is missing
-	theme = { { "olimorris/onedarkpro.nvim", lazy = false, priority = 1000, opts = { colorscheme = "onedark" } } }
+	theme = { 
+        { 
+            "olimorris/onedarkpro.nvim",
+            lazy = false,
+            priority = 1000,
+            opts = { colorscheme = "onedark" } 
+        } 
+    }
 end
 
 local plugins = {
@@ -236,21 +242,11 @@ local plugins = {
         'numToStr/Comment.nvim',
         opts = {}
     },
+    theme[1],
     require("plugins.metals")
 }
-local all_themes = require('all-themes')
-for i = 1, #all_themes do
-    plugins[#plugins + 1] = all_themes[i]
-end
 require("lazy").setup(plugins)
-local colorscheme
-if #theme > 1 then
-    colorscheme = theme[2]
-else
-    colorscheme = theme[1]
-end
-if colorscheme["opts"] ~= nil then
-    vim.cmd("colorscheme " .. colorscheme["opts"]["colorscheme"])
-end
+
+vim.cmd("colorscheme " .. theme[2]["opts"]["colorscheme"])
 
 require("Comment").setup()
